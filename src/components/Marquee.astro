@@ -1,0 +1,31 @@
+---
+const items = [
+  "Extensiones a mano",
+  "Kits para casa",
+  "Volumen ruso",
+  "Wet effect",
+  "Diseño de novias",
+  "Mantención",
+  "Asesoría 1:1",
+  "Diagnóstico sin costo",
+];
+---
+
+<div class="marquee select-none" aria-hidden="true">
+  {
+    [0, 1].map(() => (
+      <div class="marquee-track">
+        {items.map((item) => (
+          <span class="flex items-center gap-3 whitespace-nowrap">
+            <span class="text-[0.8rem] tracking-[0.18em] text-ink-soft uppercase">
+              {item}
+            </span>
+            <span class="text-[0.6rem] text-accent">◆</span>
+          </span>
+        ))}
+      </div>
+    ))
+  }
+</div>
+
+<p class="sr-only">Extensiones de pestañas, kits para casa, volumen ruso, wet effect, diseño de novias, mantención y asesoría.</p>

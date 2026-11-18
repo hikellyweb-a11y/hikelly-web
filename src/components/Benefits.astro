@@ -1,0 +1,39 @@
+---
+import { site } from "../data/site";
+---
+
+<section class="shell py-24 md:py-32" aria-labelledby="beneficios">
+  <div class="reveal max-w-[42rem]">
+    <div class="mb-4 flex items-center gap-3">
+      <span class="hairline w-10 bg-accent"></span>
+      <span class="kicker mb-0">Por qué {site.brand}</span>
+    </div>
+    <h2 id="beneficios" class="font-display text-3xl tracking-[-0.02em] md:text-5xl">
+      Cuatro razones para sentarte en
+      <span class="display-italic">nuestra silla</span>
+    </h2>
+  </div>
+
+  <div class="mt-14 grid gap-x-16 gap-y-12 sm:grid-cols-2">
+    {
+      site.benefits.map((benefit, index) => (
+        <article
+          class="reveal group border-t border-[var(--color-line)] pt-6 transition-colors duration-700 ease-fluid hover:border-[var(--color-accent)]"
+          style={`transition-delay: ${index * 80}ms`}
+        >
+          <div class="flex items-start justify-between gap-6">
+            <h3 class="max-w-[22rem] text-xl text-ink transition-colors duration-700 ease-fluid group-hover:text-accent">
+              {benefit.title}
+            </h3>
+            <span class="ghost-number text-6xl tnum transition-transform duration-700 ease-fluid group-hover:-translate-y-1">
+              {String(index + 1).padStart(2, "0")}
+            </span>
+          </div>
+          <p class="mt-5 max-w-[32rem] text-sm leading-relaxed text-ink-soft">
+            {benefit.text}
+          </p>
+        </article>
+      ))
+    }
+  </div>
+</section>

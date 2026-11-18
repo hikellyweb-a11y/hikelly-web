@@ -1,0 +1,152 @@
+---
+import { site } from "../data/site";
+import type { Stop } from "../data/site";
+
+const stops: Stop[] = site.stops;
+const count = stops.length;
+---
+
+<section
+  id="paseo"
+  class="sw relative"
+  data-sw
+  style={`height: calc(100vh + ${count} * 115vh); height: calc(100svh + ${count} * 115svh);`}
+>
+  <div class="sw-stage sticky top-0 overflow-hidden" style="height: 100vh; height: 100svh;">
+    <div class="absolute inset-0" data-sw-media>
+      {
+        stops.map((stop, index) => (
+          <div
+            class="sw-clip absolute inset-0 opacity-0 transition-opacity duration-500 ease-fluid"
+            data-clip={index}
+            data-veil={stop.veil === "soft" ? "soft" : "strong"}
+          >
+            <img
+              src={stop.poster ?? `/posters/paseo-${index + 1}.webp`}
+              alt=""
+              loading={index === 0 ? "eager" : "lazy"}
+              decoding="async"
+              class="sw-img absolute inset-0 size-full object-cover will-change-transform"
+              style={`object-position: ${stop.focus}`}
+            />
+            {
+              stop.kind !== "photo" && (
+                <video
+                  class="sw-video absolute inset-0 size-full object-cover"
+                  style={`object-position: ${stop.focus}`}
+                  muted
+                  playsinline
+                  preload="none"
+                  data-src={stop.clip ?? `/video/paseo-${index + 1}.mp4`}
+                  aria-hidden="true"
+                />
+              )
+            }
+          </div>
+        ))
+      }
+      <div class="sw-veil absolute inset-0 bg-night" aria-hidden="true"></div>
+      <div
+        class="absolute inset-0 bg-gradient-to-t from-night/90 via-transparent to-transparent"
+        aria-hidden="true"
+      >
+      </div>
+      <div
+        class="absolute inset-0 bg-gradient-to-r from-night/55 via-transparent to-night/20"
+        aria-hidden="true"
+      >
+      </div>
+      <div
+        class="absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-night/95 via-night/55 to-transparent"
+        aria-hidden="true"
+      >
+      </div>
+      <div
+        class="pointer-events-none absolute inset-0"
+        style="background: radial-gradient(90% 70% at 50% 0%, rgba(231,154,185,0.28), transparent 62%), radial-gradient(70% 60% at 85% 80%, rgba(196,112,143,0.20), transparent 60%)"
+        aria-hidden="true"
+      >
+      </div>
+    </div>
+
+    <div class="relative z-10 mx-auto h-full max-w-[84rem] px-6">
+      <div class="relative h-full">
+        {
+          stops.map((stop, index) => (
+            <article
+              class="sw-stop pointer-events-none absolute inset-x-0 bottom-0 pb-20 opacity-0 translate-y-6 transition-all duration-500 ease-fluid lg:max-w-[42rem] lg:pb-28"
+              data-stop={index}
+            >
+              <div class="mb-4 flex items-center gap-3">
+                <span class="hairline w-10 bg-accent" />
+                <span class="kicker mb-0 tnum">
+                  {String(index + 1).padStart(2, "0")} — {stop.kicker}
+                </span>
+              </div>
+              <h2 class="font-display text-[2.5rem] leading-[1.02] tracking-[-0.02em] text-ink-inverse md:text-[3.75rem]">
+                {stop.title}
+              </h2>
+              <p class="mt-5 max-w-[36rem] text-base leading-relaxed text-ink-inverse-soft md:text-lg">
+                {stop.text}
+              </p>
+              {index === 0 && (
+                <div class="mt-8 flex flex-wrap gap-3">
+                  <a
+                    href={site.cta.primary.href}
+                    class="btn btn-primary"
+                  >
+                    {site.cta.primary.label}
+                  </a>
+                  <a href={site.cta.secondary.href} class="btn btn-ghost-inverse">
+                    {site.cta.secondary.label}
+                  </a>
+                </div>
+              )}
+              {index === count - 1 && (
+                <div class="mt-8 flex flex-wrap gap-3">
+                  <a
+                    href={site.contact.whatsappUrl}
+                    class="btn btn-primary"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    Escribir por WhatsApp
+                  </a>
+                  <a href="#colecciones" class="btn btn-ghost-inverse">
+                    Ver precios
+                  </a>
+                </div>
+              )}
+            </article>
+          ))
+        }
+      </div>
+    </div>
+
+    <div
+      class="absolute top-1/2 right-6 z-10 hidden -translate-y-1/2 flex-col items-center gap-3 lg:flex"
+      aria-hidden="true"
+    >
+      {
+        stops.map((stop, index) => (
+          <span
+            class="block size-1.5 rounded-full bg-ink-inverse/30 transition-all duration-700 ease-fluid"
+            data-rail-dot={index}
+            title={stop.kicker}
+          />
+        ))
+      }
+      <span class="mt-2 h-10 w-px bg-ink-inverse/20" />
+      <span
+        class="tnum text-[0.65rem] tracking-[0.14em] text-ink-inverse-dim [writing-mode:vertical-rl]"
+        data-rail-counter
+      >
+        01 / {String(count).padStart(2, "0")}
+      </span>
+    </div>
+
+    <div class="absolute right-6 bottom-8 z-10 lg:right-20" data-sw-cue>
+      <span class="scroll-cue">Desliza</span>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,464 @@
+---
+import { site, waLink } from "../data/site";
+import type { CatalogItem } from "../data/catalog";
+
+interface Props {
+  id: string;
+  kicker: string;
+  title: string;
+  accent: string;
+  description: string;
+  items: CatalogItem[];
+  tone?: "soft" | "plain";
+  columns?: 3 | 4;
+}
+
+const {
+  id,
+  kicker,
+  title,
+  accent,
+  description,
+  items,
+  tone = "soft",
+  columns = 3,
+} = Astro.props;
+
+const headingId = `${id}-titulo`;
+const isSoft = tone === "soft";
+const lgWidth =
+  columns === 4
+    ? "lg:w-[calc(25%-0.9375rem)]"
+    : "lg:w-[calc(33.333%-0.834rem)]";
+
+const starPath =
+  "M12 2.6l2.94 5.96 6.58.96-4.76 4.64 1.12 6.55L12 17.62l-5.88 3.09 1.12-6.55L2.48 9.52l6.58-.96z";
+---
+
+<section
+  id={id}
+  class:list={[
+    "relative overflow-hidden py-24 md:py-32",
+    isSoft && "bg-bg-soft",
+  ]}
+  aria-labelledby={headingId}
+>
+  <div class="pointer-events-none absolute inset-0" aria-hidden="true">
+    <div
+      class="absolute -top-32 left-1/2 size-[36rem] -translate-x-1/2 rounded-full opacity-50 blur-3xl"
+      style="background: radial-gradient(closest-side, rgba(231,154,185,0.24) 0%, transparent 70%)"
+    >
+    </div>
+    <div
+      class="absolute -right-24 bottom-0 size-[28rem] rounded-full opacity-40 blur-3xl"
+      style="background: radial-gradient(closest-side, rgba(176,91,123,0.16) 0%, transparent 70%)"
+    >
+    </div>
+  </div>
+
+  <div class="shell relative">
+    <div class="reveal mx-auto max-w-[42rem] text-center">
+      <span
+        class:list={[
+          "inline-flex items-center rounded-full px-4 py-1.5 text-[0.65rem] font-semibold tracking-[0.24em] text-accent uppercase shadow-[inset_0_0_0_1px_var(--color-line)]",
+          isSoft ? "bg-bg" : "bg-bg-soft",
+        ]}
+      >
+        {kicker}
+      </span>
+      <h2
+        id={headingId}
+        class="mt-5 font-display text-4xl leading-[1.03] tracking-[-0.02em] md:text-[3.5rem]"
+      >
+        {title} <span class="display-italic">{accent}</span>
+      </h2>
+      <p class="mx-auto mt-4 max-w-[34rem] text-sm leading-relaxed text-ink-soft">
+        {description}
+      </p>
+    </div>
+
+    <div class="reveal relative mt-12 md:mt-14" data-showcase>
+      <div
+        id={`${id}-track`}
+        data-showcase-track
+        role="region"
+        aria-label={`${kicker}: carrusel`}
+        tabindex="0"
+        class="no-scrollbar -mx-6 flex snap-x snap-mandatory scroll-pl-6 gap-5 overflow-x-auto px-6 pb-2 md:mx-0 md:scroll-pl-0 md:px-0"
+      >
+        {
+          items.map((item) => (
+            <article
+              class:list={[
+                "group relative flex w-[82%] shrink-0 snap-start flex-col sm:w-[calc(50%-0.625rem)]",
+                lgWidth,
+              ]}
+              data-showcase-card
+            >
+              <div
+                class:list={[
+                  "relative aspect-[4/5] overflow-hidden rounded-[1.5rem] shadow-[inset_0_0_0_1px_var(--color-line)]",
+                  isSoft ? "bg-bg" : "bg-white",
+                ]}
+              >
+                <img
+                  src={item.image}
+                  alt={item.alt}
+                  loading="lazy"
+                  decoding="async"
+                  class="size-full object-cover transition-transform duration-[1200ms] ease-fluid group-hover:scale-[1.06]"
+                />
+
+                <span
+                  class="pointer-events-none absolute inset-0 bg-gradient-to-t from-night/85 via-night/15 to-transparent opacity-0 transition-opacity duration-700 ease-fluid group-hover:opacity-100 group-focus-within:opacity-100"
+                  aria-hidden="true"
+                />
+                <p class="pointer-events-none absolute inset-x-5 bottom-5 translate-y-3 text-xs leading-relaxed text-ink-inverse opacity-0 transition-all duration-700 ease-fluid group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:translate-y-0 group-focus-within:opacity-100">
+                  {item.text}
+                </p>
+
+                {item.badge && (
+                  <span class="absolute top-4 left-4 rounded-full bg-night px-3 py-1 text-[0.6rem] font-semibold tracking-[0.16em] text-ink-inverse uppercase">
+                    {item.badge}
+                  </span>
+                )}
+
+                <span
+                  class="pointer-events-none absolute top-4 right-4 grid size-9 place-items-center rounded-full bg-night text-ink-inverse shadow-[0_12px_26px_-14px_rgba(58,26,40,0.9)] transition-transform duration-700 ease-fluid group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                  aria-hidden="true"
+                >
+                  <svg
+                    viewBox="0 0 16 16"
+                    class="size-4"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.4"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M4.5 11.5 11.5 4.5M5.5 4.5h6v6" />
+                  </svg>
+                </span>
+              </div>
+
+              <div class="mt-5 flex flex-col items-center px-1 text-center">
+                <span class="text-[0.6rem] font-semibold tracking-[0.3em] text-ink-dim uppercase">
+                  {site.shortBrand}
+                </span>
+                <h3 class="mt-2 font-display text-xl leading-tight text-ink">
+                  {item.name}
+                </h3>
+                <p class="mt-2 text-sm font-semibold tnum text-ink">
+                  {item.price}
+                </p>
+                <p class="mt-1 text-[0.72rem] tnum text-ink-dim">{item.note}</p>
+
+                {item.rating != null && (
+                  <div class="mt-2.5 flex items-center justify-center gap-2">
+                    <span class="relative inline-flex shrink-0" aria-hidden="true">
+                      <span class="flex gap-[0.14rem] text-[rgba(58,26,40,0.16)]">
+                        {Array.from({ length: 5 }).map(() => (
+                          <svg
+                            viewBox="0 0 24 24"
+                            class="size-[0.78rem]"
+                            fill="currentColor"
+                          >
+                            <path d={starPath} />
+                          </svg>
+                        ))}
+                      </span>
+                      <span
+                        class="absolute inset-y-0 left-0 flex gap-[0.14rem] overflow-hidden text-accent"
+                        style={`width: ${(item.rating / 5) * 100}%`}
+                      >
+                        {Array.from({ length: 5 }).map(() => (
+                          <svg
+                            viewBox="0 0 24 24"
+                            class="size-[0.78rem] shrink-0"
+                            fill="currentColor"
+                          >
+                            <path d={starPath} />
+                          </svg>
+                        ))}
+                      </span>
+                    </span>
+                    {item.reviews != null && (
+                      <span class="text-[0.7rem] tnum text-ink-dim">
+                        {item.reviews} reseñas
+                      </span>
+                    )}
+                    <span class="sr-only">Valoración {item.rating} de 5</span>
+                  </div>
+                )}
+              </div>
+
+              <a
+                href={item.href ?? waLink(`Hola, quiero más información sobre ${item.name}`)}
+                target={item.href ? undefined : "_blank"}
+                rel={item.href ? undefined : "noopener noreferrer"}
+                class="absolute inset-0 z-10 rounded-[1.5rem]"
+                aria-label={item.href ? `Ver estilos de ${item.name}` : `${item.cta ?? "Reservar"} ${item.name} por WhatsApp`}
+              >
+              </a>
+            </article>
+          ))
+        }
+      </div>
+
+      <button
+        type="button"
+        class="showcase-arrow"
+        data-showcase-arrow="prev"
+        aria-label={`Ver anteriores en ${kicker}`}
+        aria-controls={`${id}-track`}
+      >
+        <svg
+          viewBox="0 0 16 16"
+          class="size-4"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M9.5 3.5 5 8l4.5 4.5" />
+        </svg>
+      </button>
+      <button
+        type="button"
+        class="showcase-arrow"
+        data-showcase-arrow="next"
+        aria-label={`Ver siguientes en ${kicker}`}
+        aria-controls={`${id}-track`}
+      >
+        <svg
+          viewBox="0 0 16 16"
+          class="size-4"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M6.5 3.5 11 8l-4.5 4.5" />
+        </svg>
+      </button>
+
+      <div
+        class="showcase-progress relative mt-7 h-[2px] w-full overflow-hidden rounded-full bg-[rgba(58,26,40,0.12)] sm:hidden"
+        aria-hidden="true"
+      >
+        <span
+          class="absolute inset-y-0 left-0 rounded-full bg-accent transition-[width,left] duration-300 ease-fluid"
+          data-showcase-progress
+        >
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .showcase-arrow {
+    --tx: 0;
+    position: absolute;
+    top: 39%;
+    z-index: 20;
+    display: grid;
+    width: 2.25rem;
+    height: 2.25rem;
+    place-items: center;
+    border-radius: 999px;
+    color: var(--color-ink);
+    background: rgba(255, 247, 250, 0.94);
+    box-shadow:
+      inset 0 0 0 1px var(--color-line),
+      0 18px 40px -22px rgba(58, 26, 40, 0.65);
+    backdrop-filter: blur(14px);
+    transform: translate(var(--tx), -50%);
+    transition:
+      background 0.5s var(--ease-fluid),
+      color 0.5s var(--ease-fluid),
+      transform 0.5s var(--ease-fluid),
+      opacity 0.5s var(--ease-fluid);
+  }
+
+  @media (min-width: 640px) {
+    .showcase-arrow {
+      width: 2.75rem;
+      height: 2.75rem;
+    }
+  }
+
+  .showcase-arrow[data-showcase-arrow="prev"] {
+    left: 0;
+    --tx: -50%;
+  }
+
+  .showcase-arrow[data-showcase-arrow="next"] {
+    right: 0;
+    --tx: 50%;
+  }
+
+  .showcase-arrow:hover:not(:disabled) {
+    background: var(--color-ink);
+    color: var(--color-ink-inverse);
+    transform: translate(var(--tx), -50%) scale(1.05);
+  }
+
+  .showcase-arrow:disabled {
+    opacity: 0.32;
+    cursor: default;
+  }
+
+  [data-showcase].is-static .showcase-arrow {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  [data-showcase-track].is-dragging {
+    cursor: grabbing;
+    scroll-snap-type: none;
+    user-select: none;
+  }
+
+  [data-showcase-track].is-dragging a {
+    cursor: grabbing;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .showcase-arrow {
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  const behavior: ScrollBehavior = window.matchMedia(
+    "(prefers-reduced-motion: reduce)",
+  ).matches
+    ? "auto"
+    : "smooth";
+
+  document.querySelectorAll<HTMLElement>("[data-showcase]").forEach((carousel) => {
+    const track = carousel.querySelector<HTMLElement>("[data-showcase-track]");
+    if (!track) return;
+
+    const cards = Array.from(
+      track.querySelectorAll<HTMLElement>("[data-showcase-card]"),
+    );
+    const prev = carousel.querySelector<HTMLButtonElement>(
+      '[data-showcase-arrow="prev"]',
+    );
+    const next = carousel.querySelector<HTMLButtonElement>(
+      '[data-showcase-arrow="next"]',
+    );
+    const progress = carousel.querySelector<HTMLElement>(
+      "[data-showcase-progress]",
+    );
+
+    const cardStep = () => {
+      const card = cards[0];
+      if (!card) return Math.round(track.clientWidth * 0.8);
+      const styles = window.getComputedStyle(track);
+      const gap = Number.parseFloat(styles.columnGap || "0") || 0;
+      return Math.round(card.getBoundingClientRect().width + gap);
+    };
+
+    const updateControls = () => {
+      const maxScroll = Math.max(0, track.scrollWidth - track.clientWidth);
+      const overflow = maxScroll > 4;
+
+      carousel.classList.toggle("is-static", !overflow);
+      if (prev) prev.disabled = !overflow || track.scrollLeft < 4;
+      if (next) next.disabled = !overflow || track.scrollLeft > maxScroll - 4;
+
+      if (progress) {
+        const ratio = Math.min(
+          1,
+          track.clientWidth / Math.max(1, track.scrollWidth),
+        );
+        const travelled = maxScroll > 0 ? track.scrollLeft / maxScroll : 0;
+        progress.style.width = `${ratio * 100}%`;
+        progress.style.left = `${(1 - ratio) * travelled * 100}%`;
+      }
+    };
+
+    const scrollByCard = (direction: number) => {
+      track.scrollBy({ left: direction * cardStep(), behavior });
+    };
+
+    prev?.addEventListener("click", () => scrollByCard(-1));
+    next?.addEventListener("click", () => scrollByCard(1));
+
+    let ticking = false;
+    track.addEventListener(
+      "scroll",
+      () => {
+        if (ticking) return;
+        ticking = true;
+        window.requestAnimationFrame(() => {
+          updateControls();
+          ticking = false;
+        });
+      },
+      { passive: true },
+    );
+
+    window.addEventListener("resize", updateControls);
+
+    track.addEventListener("keydown", (event) => {
+      if (event.key !== "ArrowRight" && event.key !== "ArrowLeft") return;
+      event.preventDefault();
+      scrollByCard(event.key === "ArrowRight" ? 1 : -1);
+    });
+
+    let dragging = false;
+    let dragMoved = false;
+    let dragStartX = 0;
+    let dragStartLeft = 0;
+
+    track.addEventListener("pointerdown", (event) => {
+      if (event.pointerType !== "mouse" || event.button !== 0) return;
+      dragging = true;
+      dragMoved = false;
+      dragStartX = event.clientX;
+      dragStartLeft = track.scrollLeft;
+      track.classList.add("is-dragging");
+    });
+
+    window.addEventListener("pointermove", (event) => {
+      if (!dragging) return;
+      const delta = event.clientX - dragStartX;
+      if (Math.abs(delta) > 4) dragMoved = true;
+      track.scrollLeft = dragStartLeft - delta;
+    });
+
+    const endDrag = () => {
+      if (!dragging) return;
+      dragging = false;
+      track.classList.remove("is-dragging");
+      window.setTimeout(() => {
+        dragMoved = false;
+      }, 0);
+    };
+
+    window.addEventListener("pointerup", endDrag);
+    window.addEventListener("pointercancel", endDrag);
+
+    track.addEventListener(
+      "click",
+      (event) => {
+        if (!dragMoved) return;
+        event.preventDefault();
+        event.stopPropagation();
+      },
+      true,
+    );
+
+    updateControls();
+    window.requestAnimationFrame(updateControls);
+  });
+</script>

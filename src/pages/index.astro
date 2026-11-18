@@ -1,0 +1,52 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Hero from "../components/Hero.astro";
+import Showcase from "../components/Showcase.astro";
+import About from "../components/About.astro";
+import LashClub from "../components/LashClub.astro";
+import FinalCta from "../components/FinalCta.astro";
+import { servicios, productos, cursos } from "../data/catalog";
+---
+
+<Layout>
+  <h1 class="sr-only">
+    Hi Kelly Beauty Estudio — extensiones de pestañas a mano, productos de
+    cuidado y cursos para lashistas en Santiago
+  </h1>
+  <Hero />
+  <Showcase
+    id="servicios"
+    kicker="Servicios"
+    title="Servicios para tu"
+    accent="estilo"
+    description="Extensiones de pestañas, cejas tatuadas y uñas. Cada servicio se diseña contigo y se agenda por WhatsApp."
+    items={servicios}
+    tone="soft"
+    columns={4}
+  />
+  <Showcase
+    id="productos"
+    kicker="Productos"
+    title="Productos para"
+    accent="cuidarla"
+    description="Kits, limpieza y cuidado para mantener tu set en casa. Despacho a todo Chile en dos días hábiles."
+    items={productos}
+    tone="plain"
+  />
+  <Showcase
+    id="cursos"
+    kicker="Cursos"
+    title="Cursos para"
+    accent="lashistas"
+    description="Formaciones teórico-prácticas con kit, práctica en modelos y certificación. Cupos limitados por generación."
+    items={cursos}
+    tone="soft"
+  />
+  <About />
+  <LashClub />
+  <FinalCta />
+</Layout>
+
+<script>
+  import "../scripts/motion";
+</script>

@@ -1,0 +1,54 @@
+---
+import { graphics } from "../data/media";
+---
+
+<section id="promos" class="shell py-24 md:py-32" aria-labelledby="promos-titulo">
+  <div class="reveal flex flex-wrap items-end justify-between gap-8">
+    <div class="max-w-[36rem]">
+      <div class="mb-4 flex items-center gap-3">
+        <span class="hairline w-10 bg-accent"></span>
+        <span class="kicker mb-0">Promos y eventos</span>
+      </div>
+      <h2
+        id="promos-titulo"
+        class="font-display text-3xl tracking-[-0.02em] md:text-5xl"
+      >
+        Lo que viene <span class="display-italic">este mes</span>
+      </h2>
+    </div>
+    <p class="max-w-[22rem] text-sm leading-relaxed text-ink-soft">
+      Desliza para ver los flyers vigentes. Se renuevan con cada fecha del
+      calendario del estudio.
+    </p>
+  </div>
+
+  <div
+    class="no-scrollbar -mx-6 mt-12 flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 pb-2 md:mx-0 md:px-0"
+  >
+    {
+      graphics.map((graphic, index) => (
+        <article
+          class="reveal w-[74%] shrink-0 snap-start sm:w-[46%] lg:w-[24%]"
+          style={`transition-delay: ${index * 60}ms`}
+        >
+          <div class="aspect-[4/5] overflow-hidden rounded-xl bg-bg-raise p-3 shadow-[inset_0_0_0_1px_var(--color-line)]">
+            <img
+              src={graphic.src}
+              alt={graphic.alt}
+              loading="lazy"
+              decoding="async"
+              class="size-full rounded-lg object-contain"
+            />
+          </div>
+          <p class="kicker mt-4 mb-0 flex items-center gap-2">
+            <span class="tnum text-ink-dim">
+              {String(index + 1).padStart(2, "0")}
+            </span>
+            {graphic.title}
+          </p>
+        </article>
+      ))
+    }
+    <div class="w-1 shrink-0" aria-hidden="true"></div>
+  </div>
+</section>

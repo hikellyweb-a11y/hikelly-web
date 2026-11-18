@@ -1,0 +1,47 @@
+---
+import { site } from "../data/site";
+---
+
+<section id="sobre" class="shell py-24 md:py-32" aria-labelledby="sobre-titulo">
+  <div class="reveal mx-auto max-w-[42rem] text-center">
+    <span
+      class="inline-flex items-center rounded-full bg-bg-soft px-4 py-1.5 text-[0.65rem] font-semibold tracking-[0.24em] text-accent uppercase shadow-[inset_0_0_0_1px_var(--color-line)]"
+    >
+      Sobre Hi Kelly
+    </span>
+    <h2
+      id="sobre-titulo"
+      class="mt-5 font-display text-4xl leading-[1.03] tracking-[-0.02em] md:text-[3.5rem]"
+    >
+      La mirada que <span class="display-italic">te define</span>
+    </h2>
+    <p class="mx-auto mt-4 max-w-[36rem] text-sm leading-relaxed text-ink-soft">
+      Medimos, dibujamos y aplicamos cada pestaña a mano. Trabajamos con
+      materiales cruelty-free y una asesoría 1:1 que te acompaña antes y
+      después de tu set.
+    </p>
+  </div>
+
+  <div class="mt-14 grid gap-x-16 gap-y-12 sm:grid-cols-2">
+    {
+      site.benefits.map((benefit, index) => (
+        <article
+          class="reveal group border-t border-[var(--color-line)] pt-6 transition-colors duration-700 ease-fluid hover:border-[var(--color-accent)]"
+          style={`transition-delay: ${index * 80}ms`}
+        >
+          <div class="flex items-start justify-between gap-6">
+            <h3 class="max-w-[22rem] text-xl text-ink transition-colors duration-700 ease-fluid group-hover:text-accent">
+              {benefit.title}
+            </h3>
+            <span class="font-display text-6xl leading-[0.8] font-bold tnum text-ink transition-transform duration-700 ease-fluid group-hover:-translate-y-1">
+              {String(index + 1).padStart(2, "0")}
+            </span>
+          </div>
+          <p class="mt-5 max-w-[32rem] text-sm leading-relaxed text-ink-soft">
+            {benefit.text}
+          </p>
+        </article>
+      ))
+    }
+  </div>
+</section>

@@ -1,0 +1,26 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { site } from "../data/site";
+---
+
+<Layout
+  title={`Página no encontrada | ${site.brand}`}
+  description="La página que buscas no existe. Vuelve al inicio y sigue el recorrido desde el principio."
+>
+  <section class="grid min-h-svh place-items-center px-6">
+    <div class="max-w-[34rem] text-center">
+      <p class="kicker mb-4">Error 404</p>
+      <h1 class="font-display text-4xl md:text-5xl">Esta página se cayó</h1>
+      <p class="mt-5 text-base leading-relaxed text-ink-soft">
+        El enlace no existe o cambió de lugar. Podemos volver al inicio y
+        empezar de nuevo el recorrido.
+      </p>
+      <div class="mt-8 flex flex-wrap justify-center gap-3">
+        <a href="/" class="btn btn-primary">Volver al inicio</a>
+        <a href={site.contact.whatsappUrl} class="btn btn-ghost" target="_blank" rel="noopener noreferrer">
+          Escribir por WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

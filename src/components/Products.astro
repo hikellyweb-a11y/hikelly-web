@@ -1,0 +1,663 @@
+---
+import { site } from "../data/site";
+
+type Category = "extensiones" | "kits" | "cuidado";
+
+type Product = {
+  name: string;
+  category: Category;
+  price: number;
+  from?: boolean;
+  installments: number;
+  rating: number;
+  reviews: number;
+  image: string;
+  alt: string;
+  text: string;
+  badge?: string;
+};
+
+const formatClp = (value: number) =>
+  "$" + value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+
+const starPath =
+  "M12 2.6l2.94 5.96 6.58.96-4.76 4.64 1.12 6.55L12 17.62l-5.88 3.09 1.12-6.55L2.48 9.52l6.58-.96z";
+
+const categories: { id: "todos" | Category; label: string }[] = [
+  { id: "todos", label: "Todos" },
+  { id: "extensiones", label: "Extensiones" },
+  { id: "kits", label: "Kits" },
+  { id: "cuidado", label: "Cuidado" },
+];
+
+const products: Product[] = [
+  {
+    name: "Extensiones Clásicas",
+    category: "extensiones",
+    price: 39000,
+    from: true,
+    installments: 12,
+    rating: 4.9,
+    reviews: 86,
+    image: "/media/35a0b58e-bd60-4e63-a3d5-78a991234db5.webp",
+    alt: "Mirada con extensiones de pestañas clásicas",
+    text: "Set natural, una extensión por pestaña. Ideal para dar longitud y definición sin volumen.",
+    badge: "Más pedido",
+  },
+  {
+    name: "Volumen Ruso",
+    category: "extensiones",
+    price: 49000,
+    from: true,
+    installments: 12,
+    rating: 4.8,
+    reviews: 124,
+    image: "/media/48ac19a3-6226-41cc-8b2f-5117ccd4ea6a.webp",
+    alt: "Mirada con volumen ruso de pestañas",
+    text: "Abanicos ultrafinos para mayor densidad con peso ligero. Efecto glam sin perder naturalidad.",
+  },
+  {
+    name: "Hybrid / Mix",
+    category: "extensiones",
+    price: 44000,
+    from: true,
+    installments: 12,
+    rating: 4.7,
+    reviews: 41,
+    image: "/media/3a139cfe-c1b7-47fe-af70-42d4811be010.webp",
+    alt: "Detalle de un set híbrido de pestañas",
+    text: "Mezcla de clásicas y volumen. El equilibrio perfecto entre natural y con más cuerpo.",
+  },
+  {
+    name: "Wet Look",
+    category: "extensiones",
+    price: 49000,
+    from: true,
+    installments: 12,
+    rating: 4.9,
+    reviews: 58,
+    image: "/media/66300d78-d712-4817-ba71-d36d69871ae9.webp",
+    alt: "Efecto wet en extensiones de pestañas",
+    text: "Efecto húmedo y definido. Muy tendencia, ideal para miradas con carácter.",
+    badge: "Tendencia",
+  },
+  {
+    name: "Kit Pestañas en Casa",
+    category: "kits",
+    price: 24000,
+    from: true,
+    installments: 12,
+    rating: 4.8,
+    reviews: 73,
+    image: "/media/b724fcef-af77-43a1-a513-1c8d518947e1.webp",
+    alt: "Kit de pestañas para aplicar en casa",
+    text: "Pestañas reutilizables, aplicador y adhesivo. Resultado de salón en minutos.",
+  },
+  {
+    name: "Adhesivo Larga Duración",
+    category: "kits",
+    price: 8990,
+    installments: 3,
+    rating: 4.6,
+    reviews: 29,
+    image: "/media/dc18802b-85a3-4031-b7c6-ab9d85841b5c.webp",
+    alt: "Adhesivo de larga duración para pestañas",
+    text: "Fijación de hasta 15 puestas y secado rápido. Bajo contenido de cianocrilato.",
+  },
+  {
+    name: "Suero Fortalecedor",
+    category: "cuidado",
+    price: 12990,
+    installments: 3,
+    rating: 4.7,
+    reviews: 34,
+    image: "/media/13b0d429-83c1-41f0-98b9-34b7d7fb630b.webp",
+    alt: "Suero fortalecedor para pestañas naturales",
+    text: "Acondicionador de keratina para cuidar tu pestaña natural entre sets.",
+  },
+  {
+    name: "Mantenimiento / Retoque",
+    category: "cuidado",
+    price: 29000,
+    from: true,
+    installments: 12,
+    rating: 4.9,
+    reviews: 67,
+    image: "/media/734e01b6-2b9c-45d8-9cdf-3b8e3982f5d2.webp",
+    alt: "Aplicación de mantenimiento pestaña por pestaña",
+    text: "Renueva tu set entre 2-3 semanas. Conserva forma, densidad y duración.",
+  },
+];
+---
+
+<section
+  id="productos"
+  class="relative overflow-hidden bg-bg-soft py-24 md:py-32"
+  aria-labelledby="productos-titulo"
+>
+  <div class="pointer-events-none absolute inset-0" aria-hidden="true">
+    <div
+      class="absolute -top-32 left-1/2 size-[36rem] -translate-x-1/2 rounded-full opacity-60 blur-3xl"
+      style="background: radial-gradient(closest-side, rgba(231,154,185,0.30) 0%, transparent 70%)"
+    >
+    </div>
+    <div
+      class="absolute -right-24 bottom-0 size-[28rem] rounded-full opacity-50 blur-3xl"
+      style="background: radial-gradient(closest-side, rgba(176,91,123,0.18) 0%, transparent 70%)"
+    >
+    </div>
+  </div>
+
+  <div class="shell relative">
+    <div class="reveal mx-auto max-w-[42rem] text-center">
+      <span
+        class="inline-flex items-center rounded-full bg-bg px-4 py-1.5 text-[0.65rem] font-semibold tracking-[0.24em] text-accent uppercase shadow-[inset_0_0_0_1px_var(--color-line)]"
+      >
+        Productos y servicios
+      </span>
+      <h2
+        id="productos-titulo"
+        class="mt-5 font-display text-4xl leading-[1.03] tracking-[-0.02em] md:text-[3.5rem]"
+      >
+        Lo que puedes <span class="display-italic">reservar</span>
+      </h2>
+      <p class="mx-auto mt-4 max-w-[32rem] text-sm leading-relaxed text-ink-soft">
+        Precios referenciales. Se confirman en tu diagnóstico según la forma de
+        tu ojo y el efecto que busques.
+      </p>
+    </div>
+
+    <div
+      class="no-scrollbar reveal -mx-6 mt-8 overflow-x-auto px-6 sm:mx-0 sm:overflow-visible sm:px-0"
+    >
+      <div
+        class="mx-auto flex w-max gap-1 sm:w-auto sm:justify-center"
+        role="tablist"
+        aria-label="Filtrar productos por categoría"
+      >
+        {
+          categories.map((category, index) => (
+            <button
+              type="button"
+              id={`productos-tab-${category.id}`}
+              role="tab"
+              aria-selected={index === 0 ? "true" : "false"}
+              aria-controls="productos-track"
+              tabindex={index === 0 ? 0 : -1}
+              data-product-tab={category.id}
+              class="product-tab"
+            >
+              {category.label}
+            </button>
+          ))
+        }
+      </div>
+    </div>
+
+    <div class="reveal relative mt-9 md:mt-12" data-product-carousel>
+      <div
+        id="productos-track"
+        data-product-track
+        role="tabpanel"
+        aria-label="Productos y servicios disponibles"
+        tabindex="0"
+        class="no-scrollbar -mx-6 flex snap-x snap-mandatory scroll-pl-6 gap-5 overflow-x-auto px-6 pb-2 md:mx-0 md:scroll-pl-0 md:px-0"
+      >
+        {
+          products.map((product) => (
+            <article
+              class="product-card group relative flex w-[82%] shrink-0 snap-start flex-col sm:w-[calc(50%-0.625rem)] lg:w-[calc(33.333%-0.834rem)]"
+              data-product-card
+              data-category={product.category}
+            >
+              <div class="relative aspect-[4/5] overflow-hidden rounded-[1.5rem] bg-bg shadow-[inset_0_0_0_1px_var(--color-line)]">
+                <img
+                  src={product.image}
+                  alt={product.alt}
+                  loading="lazy"
+                  decoding="async"
+                  class="size-full object-cover transition-transform duration-[1200ms] ease-fluid group-hover:scale-[1.06]"
+                />
+
+                <span
+                  class="pointer-events-none absolute inset-0 bg-gradient-to-t from-night/85 via-night/15 to-transparent opacity-0 transition-opacity duration-700 ease-fluid group-hover:opacity-100 group-focus-within:opacity-100"
+                  aria-hidden="true"
+                />
+                <p class="pointer-events-none absolute inset-x-5 bottom-5 translate-y-3 text-xs leading-relaxed text-ink-inverse opacity-0 transition-all duration-700 ease-fluid group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:translate-y-0 group-focus-within:opacity-100">
+                  {product.text}
+                </p>
+
+                {product.badge && (
+                  <span class="absolute top-4 left-4 rounded-full bg-night px-3 py-1 text-[0.6rem] font-semibold tracking-[0.16em] text-ink-inverse uppercase">
+                    {product.badge}
+                  </span>
+                )}
+
+                <span
+                  class="pointer-events-none absolute top-4 right-4 grid size-9 place-items-center rounded-full bg-night text-ink-inverse shadow-[0_12px_26px_-14px_rgba(58,26,40,0.9)] transition-transform duration-700 ease-fluid group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                  aria-hidden="true"
+                >
+                  <svg
+                    viewBox="0 0 16 16"
+                    class="size-4"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.4"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M4.5 11.5 11.5 4.5M5.5 4.5h6v6" />
+                  </svg>
+                </span>
+              </div>
+
+              <div class="mt-5 flex flex-col items-center px-1 text-center">
+                <span class="text-[0.6rem] font-semibold tracking-[0.3em] text-ink-dim uppercase">
+                  {site.shortBrand}
+                </span>
+                <h3 class="mt-2 font-display text-xl leading-tight text-ink">
+                  {product.name}
+                </h3>
+                <p class="mt-2 text-sm font-semibold tnum text-ink">
+                  {product.from ? "Desde " : ""}
+                  {formatClp(product.price)}
+                </p>
+                <p class="mt-1 text-[0.72rem] tnum text-ink-dim">
+                  En {product.installments} cuotas de{" "}
+                  {formatClp(Math.ceil(product.price / product.installments))} sin
+                  interés
+                </p>
+
+                <div class="mt-2.5 flex items-center justify-center gap-2">
+                  <span class="relative inline-flex shrink-0" aria-hidden="true">
+                    <span class="flex gap-[0.14rem] text-[rgba(58,26,40,0.16)]">
+                      {Array.from({ length: 5 }).map(() => (
+                        <svg
+                          viewBox="0 0 24 24"
+                          class="size-[0.78rem]"
+                          fill="currentColor"
+                        >
+                          <path d={starPath} />
+                        </svg>
+                      ))}
+                    </span>
+                    <span
+                      class="absolute inset-y-0 left-0 flex gap-[0.14rem] overflow-hidden text-accent"
+                      style={`width: ${(product.rating / 5) * 100}%`}
+                    >
+                      {Array.from({ length: 5 }).map(() => (
+                        <svg
+                          viewBox="0 0 24 24"
+                          class="size-[0.78rem] shrink-0"
+                          fill="currentColor"
+                        >
+                          <path d={starPath} />
+                        </svg>
+                      ))}
+                    </span>
+                  </span>
+                  <span class="text-[0.7rem] tnum text-ink-dim">
+                    {product.reviews} reseñas
+                  </span>
+                  <span class="sr-only">
+                    Valoración {product.rating} de 5
+                  </span>
+                </div>
+              </div>
+
+              <a
+                href={site.contact.whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="absolute inset-0 z-10 rounded-[1.5rem]"
+                aria-label={`Reservar ${product.name} por WhatsApp`}
+              >
+              </a>
+            </article>
+          ))
+        }
+      </div>
+
+      <button
+        type="button"
+        class="product-arrow"
+        data-product-arrow="prev"
+        aria-label="Ver productos anteriores"
+        aria-controls="productos-track"
+      >
+        <svg
+          viewBox="0 0 16 16"
+          class="size-4"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M9.5 3.5 5 8l4.5 4.5" />
+        </svg>
+      </button>
+      <button
+        type="button"
+        class="product-arrow"
+        data-product-arrow="next"
+        aria-label="Ver productos siguientes"
+        aria-controls="productos-track"
+      >
+        <svg
+          viewBox="0 0 16 16"
+          class="size-4"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M6.5 3.5 11 8l-4.5 4.5" />
+        </svg>
+      </button>
+
+      <div
+        class="relative mt-7 h-[2px] w-full overflow-hidden rounded-full bg-[rgba(58,26,40,0.12)] sm:hidden"
+        aria-hidden="true"
+      >
+        <span
+          class="absolute inset-y-0 left-0 rounded-full bg-accent transition-[width,left] duration-300 ease-fluid"
+          data-product-progress
+        >
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  [data-product-card][hidden] {
+    display: none;
+  }
+
+  .product-tab {
+    position: relative;
+    flex: none;
+    cursor: pointer;
+    padding: 0.5rem 0.85rem 0.85rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-ink-dim);
+    transition: color 0.5s var(--ease-fluid);
+  }
+
+  .product-tab::after {
+    content: "";
+    position: absolute;
+    right: 0.85rem;
+    bottom: 0;
+    left: 0.85rem;
+    height: 2px;
+    border-radius: 999px;
+    background: var(--color-ink);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.6s var(--ease-fluid);
+  }
+
+  .product-tab:hover {
+    color: var(--color-ink-soft);
+  }
+
+  .product-tab[aria-selected="true"] {
+    color: var(--color-ink);
+    font-weight: 600;
+  }
+
+  .product-tab[aria-selected="true"]::after {
+    transform: scaleX(1);
+  }
+
+  .product-arrow {
+    --tx: 0;
+    position: absolute;
+    top: 39%;
+    z-index: 20;
+    display: none;
+    width: 2.75rem;
+    height: 2.75rem;
+    place-items: center;
+    border-radius: 999px;
+    color: var(--color-ink);
+    background: rgba(255, 247, 250, 0.94);
+    box-shadow:
+      inset 0 0 0 1px var(--color-line),
+      0 18px 40px -22px rgba(58, 26, 40, 0.65);
+    backdrop-filter: blur(14px);
+    transform: translate(var(--tx), -50%);
+    transition:
+      background 0.5s var(--ease-fluid),
+      color 0.5s var(--ease-fluid),
+      transform 0.5s var(--ease-fluid),
+      opacity 0.5s var(--ease-fluid);
+  }
+
+  @media (min-width: 640px) {
+    .product-arrow {
+      display: grid;
+    }
+  }
+
+  .product-arrow[data-product-arrow="prev"] {
+    left: 0;
+    --tx: -50%;
+  }
+
+  .product-arrow[data-product-arrow="next"] {
+    right: 0;
+    --tx: 50%;
+  }
+
+  .product-arrow:hover:not(:disabled) {
+    background: var(--color-ink);
+    color: var(--color-ink-inverse);
+    transform: translate(var(--tx), -50%) scale(1.05);
+  }
+
+  .product-arrow:disabled {
+    opacity: 0.32;
+    cursor: default;
+  }
+
+  [data-product-track].is-dragging {
+    cursor: grabbing;
+    scroll-snap-type: none;
+    user-select: none;
+  }
+
+  [data-product-track].is-dragging a {
+    cursor: grabbing;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .product-tab::after,
+    .product-arrow {
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  const section = document.querySelector<HTMLElement>("#productos");
+
+  if (section) {
+    const carousel = section.querySelector<HTMLElement>(
+      "[data-product-carousel]",
+    );
+    const track =
+      section.querySelector<HTMLElement>("[data-product-track]");
+    const tablist = section.querySelector<HTMLElement>('[role="tablist"]');
+    const tabs = Array.from(
+      section.querySelectorAll<HTMLButtonElement>("[data-product-tab]"),
+    );
+    const cards = track
+      ? Array.from(
+          track.querySelectorAll<HTMLElement>("[data-product-card]"),
+        )
+      : [];
+    const prev = section.querySelector<HTMLButtonElement>(
+      '[data-product-arrow="prev"]',
+    );
+    const next = section.querySelector<HTMLButtonElement>(
+      '[data-product-arrow="next"]',
+    );
+    const progress = section.querySelector<HTMLElement>(
+      "[data-product-progress]",
+    );
+
+    if (carousel && track && cards.length > 0) {
+      const reduceMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches;
+      const behavior: ScrollBehavior = reduceMotion ? "auto" : "smooth";
+
+      const cardStep = () => {
+        const card = cards.find((item) => !item.hidden);
+        if (!card) return Math.round(track.clientWidth * 0.8);
+        const styles = window.getComputedStyle(track);
+        const gap = Number.parseFloat(styles.columnGap || "0") || 0;
+        return Math.round(card.getBoundingClientRect().width + gap);
+      };
+
+      const updateControls = () => {
+        const maxScroll = Math.max(0, track.scrollWidth - track.clientWidth);
+        const overflow = maxScroll > 4;
+
+        if (prev) prev.disabled = !overflow || track.scrollLeft < 4;
+        if (next) next.disabled = !overflow || track.scrollLeft > maxScroll - 4;
+
+        if (progress) {
+          const ratio = Math.min(
+            1,
+            track.clientWidth / Math.max(1, track.scrollWidth),
+          );
+          const travelled = maxScroll > 0 ? track.scrollLeft / maxScroll : 0;
+          progress.style.width = `${ratio * 100}%`;
+          progress.style.left = `${(1 - ratio) * travelled * 100}%`;
+        }
+      };
+
+      const scrollByCard = (direction: number) => {
+        track.scrollBy({ left: direction * cardStep(), behavior });
+      };
+
+      prev?.addEventListener("click", () => scrollByCard(-1));
+      next?.addEventListener("click", () => scrollByCard(1));
+
+      let ticking = false;
+      track.addEventListener(
+        "scroll",
+        () => {
+          if (ticking) return;
+          ticking = true;
+          window.requestAnimationFrame(() => {
+            updateControls();
+            ticking = false;
+          });
+        },
+        { passive: true },
+      );
+
+      window.addEventListener("resize", updateControls);
+
+      const selectTab = (tab: HTMLButtonElement) => {
+        tabs.forEach((item) => {
+          const active = item === tab;
+          item.setAttribute("aria-selected", active ? "true" : "false");
+          item.tabIndex = active ? 0 : -1;
+        });
+
+        const category = tab.dataset.productTab ?? "todos";
+        cards.forEach((card) => {
+          card.hidden =
+            category !== "todos" && card.dataset.category !== category;
+        });
+
+        track.scrollTo({ left: 0, behavior: "auto" });
+        window.requestAnimationFrame(updateControls);
+      };
+
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", () => selectTab(tab));
+      });
+
+      tablist?.addEventListener("keydown", (event) => {
+        const current = tabs.indexOf(
+          document.activeElement as HTMLButtonElement,
+        );
+        if (current < 0) return;
+
+        let target = current;
+        if (event.key === "ArrowRight") target = (current + 1) % tabs.length;
+        else if (event.key === "ArrowLeft")
+          target = (current - 1 + tabs.length) % tabs.length;
+        else if (event.key === "Home") target = 0;
+        else if (event.key === "End") target = tabs.length - 1;
+        else return;
+
+        event.preventDefault();
+        tabs[target]?.focus();
+        if (tabs[target]) selectTab(tabs[target]);
+      });
+
+      track.addEventListener("keydown", (event) => {
+        if (event.key !== "ArrowRight" && event.key !== "ArrowLeft") return;
+        event.preventDefault();
+        scrollByCard(event.key === "ArrowRight" ? 1 : -1);
+      });
+
+      let dragging = false;
+      let dragMoved = false;
+      let dragStartX = 0;
+      let dragStartLeft = 0;
+
+      track.addEventListener("pointerdown", (event) => {
+        if (event.pointerType !== "mouse" || event.button !== 0) return;
+        dragging = true;
+        dragMoved = false;
+        dragStartX = event.clientX;
+        dragStartLeft = track.scrollLeft;
+        track.classList.add("is-dragging");
+      });
+
+      window.addEventListener("pointermove", (event) => {
+        if (!dragging) return;
+        const delta = event.clientX - dragStartX;
+        if (Math.abs(delta) > 4) dragMoved = true;
+        track.scrollLeft = dragStartLeft - delta;
+      });
+
+      const endDrag = () => {
+        if (!dragging) return;
+        dragging = false;
+        track.classList.remove("is-dragging");
+        window.setTimeout(() => {
+          dragMoved = false;
+        }, 0);
+      };
+
+      window.addEventListener("pointerup", endDrag);
+      window.addEventListener("pointercancel", endDrag);
+
+      track.addEventListener(
+        "click",
+        (event) => {
+          if (!dragMoved) return;
+          event.preventDefault();
+          event.stopPropagation();
+        },
+        true,
+      );
+
+      updateControls();
+    }
+  }
+</script>

@@ -1,0 +1,289 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { services, type Service } from "../../data/services";
+import { site, waLink } from "../../data/site";
+
+export function getStaticPaths() {
+  return services.map((service) => ({
+    params: { slug: service.slug },
+    props: { service },
+  }));
+}
+
+const { service } = Astro.props as { service: Service };
+const hasGallery = Boolean(service.gallery && service.gallery.length > 0);
+---
+
+<Layout title={`${service.name} | ${site.brand}`}>
+  <div class="pt-28 md:pt-36">
+    <section class="shell pb-24 md:pb-32">
+      <a
+        href="/#servicios"
+        class="reveal inline-flex items-center gap-2 text-sm text-ink-soft transition-colors duration-700 ease-fluid hover:text-ink"
+      >
+        <span aria-hidden="true">←</span>
+        Volver a servicios
+      </a>
+
+      <div class="reveal mt-8 max-w-[44rem]">
+        <div class="mb-4 flex items-center gap-3">
+          <span class="hairline w-10 bg-accent"></span>
+          <span class="kicker mb-0">{service.kicker}</span>
+        </div>
+        <h1 class="font-display text-4xl leading-[1.03] tracking-[-0.02em] md:text-[4rem]">
+          {service.name}
+        </h1>
+        <p class="mt-5 max-w-[38rem] text-base leading-relaxed text-ink-soft md:text-lg">
+          {service.intro}
+        </p>
+      </div>
+
+      {
+        hasGallery ? (
+          <div class="mt-12">
+            <div class="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+              {
+                service.gallery!.map((src, index) => (
+                  <div
+                    class="reveal aspect-square overflow-hidden rounded-xl bg-bg-soft shadow-[inset_0_0_0_1px_var(--color-line)]"
+                    style={`transition-delay: ${(index % 4) * 60}ms`}
+                  >
+                    <img
+                      src={src}
+                      alt={`${service.name}, trabajo ${index + 1}`}
+                      loading="lazy"
+                      decoding="async"
+                      class="size-full object-cover"
+                    />
+                  </div>
+                ))
+              }
+            </div>
+            <div class="reveal mt-8 flex flex-col items-center gap-4 text-center">
+              <p class="max-w-[30rem] text-sm leading-relaxed text-ink-soft">
+                El valor depende del tamaño y el nivel de detalle. Cotiza sin
+                compromiso.
+              </p>
+              <a
+                href={waLink(`Hola, quiero más información sobre ${service.name}`)}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn btn-primary"
+              >
+                Consultar por WhatsApp
+              </a>
+            </div>
+          </div>
+        ) : (
+          <div class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {
+              service.styles.map((style, index) => (
+                <article
+                  class="reveal group flex flex-col overflow-hidden rounded-[1.25rem] bg-bg shadow-[inset_0_0_0_1px_var(--color-line)]"
+                  style={`transition-delay: ${index * 60}ms`}
+                >
+                  <div class="relative aspect-[4/3] overflow-hidden bg-bg-raise">
+                    {style.gallery && style.gallery.length > 0 ? (
+                      <div class="gallery relative h-full" data-gallery>
+                        <div
+                          class="no-scrollbar flex h-full snap-x snap-mandatory overflow-x-auto"
+                          data-gallery-track
+                        >
+                          {[style.image, ...style.gallery].map((src) => (
+                            <img
+                              src={src}
+                              alt={style.name}
+                              loading="lazy"
+                              decoding="async"
+                              class="h-full w-full shrink-0 snap-start object-cover"
+                            />
+                          ))}
+                        </div>
+                        <button
+                          type="button"
+                          class="gallery-nav gallery-nav-prev"
+                          data-gallery-prev
+                          aria-label={`${style.name}: imagen anterior`}
+                        >
+                          <svg
+                            viewBox="0 0 16 16"
+                            class="size-4"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.6"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            aria-hidden="true"
+                          >
+                            <path d="M10 3.5 5.5 8 10 12.5" />
+                          </svg>
+                        </button>
+                        <button
+                          type="button"
+                          class="gallery-nav gallery-nav-next"
+                          data-gallery-next
+                          aria-label={`${style.name}: imagen siguiente`}
+                        >
+                          <svg
+                            viewBox="0 0 16 16"
+                            class="size-4"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.6"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            aria-hidden="true"
+                          >
+                            <path d="M6 3.5 10.5 8 6 12.5" />
+                          </svg>
+                        </button>
+                        <div class="gallery-dots" data-gallery-dots>
+                          {[style.image, ...style.gallery].map(() => (
+                            <span class="gallery-dot" data-gallery-dot />
+                          ))}
+                        </div>
+                      </div>
+                    ) : (
+                      <img
+                        src={style.image}
+                        alt={style.name}
+                        loading="lazy"
+                        decoding="async"
+                        class="size-full object-cover transition-transform duration-[1100ms] ease-fluid group-hover:scale-[1.05]"
+                      />
+                    )}
+                  </div>
+                  <div class="flex flex-1 flex-col p-5">
+                    <div class="flex items-start justify-between gap-3">
+                      <h2 class="font-display text-xl leading-tight text-ink">
+                        {style.name}
+                      </h2>
+                      <span class="tnum text-[0.65rem] tracking-[0.18em] text-ink-dim uppercase">
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+                    </div>
+                    <p class="tnum mt-1 text-sm font-semibold text-ink">
+                      {style.price}
+                    </p>
+                    <p class="mt-2 text-sm leading-relaxed text-ink-soft">
+                      {style.description}
+                    </p>
+                    <div class="mt-auto pt-5">
+                      <a
+                        href={waLink(`Hola, quiero reservar ${service.name} (${style.name})`)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="btn btn-primary w-full"
+                      >
+                        Reservar
+                      </a>
+                    </div>
+                  </div>
+                </article>
+              ))
+            }
+          </div>
+        )
+      }
+
+      <p class="reveal mt-10 text-center text-xs text-ink-dim">
+        Precios referenciales. Se confirman al agendar tu hora.
+      </p>
+    </section>
+  </div>
+</Layout>
+
+<style>
+  .gallery-nav {
+    position: absolute;
+    top: 50%;
+    z-index: 5;
+    display: grid;
+    place-items: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 999px;
+    color: #fff;
+    background: rgba(58, 26, 40, 0.62);
+    backdrop-filter: blur(8px);
+    transform: translateY(-50%);
+    box-shadow: 0 6px 16px -8px rgba(0, 0, 0, 0.6);
+    transition:
+      background 0.5s var(--ease-fluid),
+      transform 0.5s var(--ease-fluid);
+  }
+
+  .gallery-nav:hover {
+    background: var(--color-ink);
+    transform: translateY(-50%) scale(1.06);
+  }
+
+  .gallery-nav-prev {
+    left: 0.5rem;
+  }
+
+  .gallery-nav-next {
+    right: 0.5rem;
+  }
+
+  .gallery-dots {
+    position: absolute;
+    bottom: 0.6rem;
+    left: 50%;
+    z-index: 5;
+    display: flex;
+    gap: 0.3rem;
+    transform: translateX(-50%);
+  }
+
+  .gallery-dot {
+    width: 0.42rem;
+    height: 0.42rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.55);
+    transition:
+      background 0.3s var(--ease-fluid),
+      transform 0.3s var(--ease-fluid);
+  }
+
+  .gallery-dot.is-active {
+    background: #fff;
+    transform: scale(1.3);
+  }
+</style>
+
+<script>
+  import "../../scripts/motion";
+
+  document.querySelectorAll<HTMLElement>("[data-gallery]").forEach((gallery) => {
+    const track = gallery.querySelector<HTMLElement>("[data-gallery-track]");
+    if (!track) return;
+
+    const prev = gallery.querySelector<HTMLButtonElement>(
+      "[data-gallery-prev]",
+    );
+    const next = gallery.querySelector<HTMLButtonElement>(
+      "[data-gallery-next]",
+    );
+    const dots = Array.from(
+      gallery.querySelectorAll<HTMLElement>("[data-gallery-dot]"),
+    );
+
+    const setActive = () => {
+      const step = track.clientWidth || 1;
+      const index = Math.round(track.scrollLeft / step);
+      dots.forEach((dot, i) => dot.classList.toggle("is-active", i === index));
+    };
+
+    prev?.addEventListener("click", () => {
+      track.scrollBy({ left: -track.clientWidth, behavior: "smooth" });
+    });
+    next?.addEventListener("click", () => {
+      track.scrollBy({ left: track.clientWidth, behavior: "smooth" });
+    });
+
+    track.addEventListener("scroll", setActive, { passive: true });
+    window.addEventListener("resize", setActive);
+    setActive();
+  });
+</script>

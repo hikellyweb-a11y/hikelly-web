@@ -1,0 +1,22 @@
+# Dependencias
+node_modules
+
+# Build
+dist
+.astro
+
+# Deploy
+.vercel
+
+# Logs
+dev.log
+dev.err.log
+
+# Assets fuente ya convertidos a public/
+/embajadora.jpeg
+/ejemplo.png
+/logo-horizontal.webp
+/logo.jpeg
+/Imagen de ChatGPT*.png
+/WEBEYE/
+/productos/

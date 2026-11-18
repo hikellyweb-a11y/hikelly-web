@@ -1,0 +1,101 @@
+---
+import { photos } from "../data/media";
+
+const offsets = ["md:mt-0", "md:mt-16", "md:mt-8", "md:mt-24"];
+---
+
+<section id="trabajos" class="bg-bg-soft py-24 md:py-32" aria-labelledby="trabajos-titulo">
+  <div class="shell">
+    <div class="reveal flex flex-wrap items-end justify-between gap-8">
+      <div class="max-w-[36rem]">
+        <div class="mb-4 flex items-center gap-3">
+          <span class="hairline w-10 bg-accent"></span>
+          <span class="kicker mb-0">Trabajos</span>
+        </div>
+        <h2
+          id="trabajos-titulo"
+          class="font-display text-3xl tracking-[-0.02em] md:text-5xl"
+        >
+          Miradas que ya <span class="display-italic">pasaron</span> por el
+          estudio
+        </h2>
+      </div>
+      <p class="max-w-[22rem] text-sm leading-relaxed text-ink-soft">
+        Cada set se fotografía el mismo día de la aplicación, sin retoque.
+        Toca cualquier imagen para verla en grande.
+      </p>
+    </div>
+
+    <div class="mt-14 grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4 md:items-start">
+      {
+        photos.map((photo, index) => (
+          <button
+            type="button"
+            class={`reveal group relative block w-full overflow-hidden rounded-xl ${offsets[index % offsets.length]}`}
+            style={`aspect-ratio: ${photo.ratio}; transition-delay: ${(index % 4) * 70}ms`}
+            data-lightbox
+            data-src={photo.src}
+            data-alt={photo.alt}
+            aria-label={`Ampliar: ${photo.alt}`}
+          >
+            <img
+              src={photo.src}
+              alt={photo.alt}
+              loading="lazy"
+              decoding="async"
+              class="absolute inset-0 size-full object-cover transition-transform duration-[1100ms] ease-fluid group-hover:scale-[1.06]"
+            />
+            <span
+              class="absolute inset-0 bg-gradient-to-t from-night/70 via-transparent to-transparent opacity-60 transition-opacity duration-700 ease-fluid group-hover:opacity-90"
+              aria-hidden="true"
+            />
+            <span
+              class="tnum absolute bottom-3 left-3 text-[0.65rem] tracking-[0.18em] text-ink-inverse-soft uppercase opacity-0 transition-all duration-700 ease-fluid group-hover:opacity-100"
+            >
+              {String(index + 1).padStart(2, "0")}
+            </span>
+          </button>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<dialog
+  class="fixed inset-0 z-[80] m-auto max-h-[92svh] max-w-[min(92vw,60rem)] rounded-2xl bg-bg p-2 shadow-[0_40px_120px_-40px_rgba(0,0,0,0.8)] backdrop:bg-bg/90 backdrop:backdrop-blur-xl"
+  data-lightbox-dialog
+>
+  <img src="" alt="" class="max-h-[86svh] w-full object-contain" data-lightbox-image />
+  <button
+    type="button"
+    class="absolute top-4 right-4 grid size-10 place-items-center rounded-full bg-bg/70 text-ink backdrop-blur-xl transition-colors duration-700 ease-fluid hover:bg-accent hover:text-accent-ink"
+    data-lightbox-close
+    aria-label="Cerrar"
+  >
+    <svg viewBox="0 0 16 16" class="size-4" fill="none" stroke="currentColor" stroke-width="1.5">
+      <path d="M3 3l10 10M13 3L3 13" />
+    </svg>
+  </button>
+</dialog>
+
+<script>
+  const dialog = document.querySelector<HTMLDialogElement>("[data-lightbox-dialog]");
+  const dialogImage = dialog?.querySelector<HTMLImageElement>("[data-lightbox-image]");
+  const closeButton = dialog?.querySelector<HTMLButtonElement>("[data-lightbox-close]");
+
+  const close = () => dialog?.close();
+
+  document.querySelectorAll<HTMLButtonElement>("[data-lightbox]").forEach((trigger) => {
+    trigger.addEventListener("click", () => {
+      if (!dialog || !dialogImage) return;
+      dialogImage.src = trigger.dataset.src ?? "";
+      dialogImage.alt = trigger.dataset.alt ?? "";
+      dialog.showModal();
+    });
+  });
+
+  closeButton?.addEventListener("click", close);
+  dialog?.addEventListener("click", (event) => {
+    if (event.target === dialog) close();
+  });
+</script>

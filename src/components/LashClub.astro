@@ -1,0 +1,205 @@
+---
+import { site } from "../data/site";
+---
+
+<section id="lash-club" class="shell py-24 md:py-32" aria-labelledby="lash-club-titulo">
+  <div
+    class="lc-card relative overflow-hidden rounded-[1.75rem] px-8 py-14 md:px-16 md:py-16"
+    style="background: linear-gradient(150deg, #2a101c 0%, #3a1a28 55%, #4a2238 100%)"
+  >
+    <div
+      class="pointer-events-none absolute -top-24 right-0 size-[28rem] rounded-full opacity-30 blur-3xl"
+      style="background: radial-gradient(closest-side, rgba(231,154,185,0.5) 0%, transparent 70%)"
+      aria-hidden="true"
+    >
+    </div>
+
+    <span class="lc-spark lc-spark-a" aria-hidden="true"></span>
+    <span class="lc-spark lc-spark-b" aria-hidden="true"></span>
+    <span class="lc-spark lc-spark-c" aria-hidden="true"></span>
+    <span class="lc-spark lc-spark-d" aria-hidden="true"></span>
+    <span class="lc-spark lc-spark-e" aria-hidden="true"></span>
+
+    <div class="relative grid gap-10 lg:grid-cols-[1.05fr_0.95fr_0.7fr] lg:items-center">
+      <div class="reveal">
+        <span
+          class="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-[0.65rem] font-semibold tracking-[0.24em] text-[#f3c3d4] uppercase shadow-[inset_0_0_0_1px_rgba(255,241,246,0.18)]"
+        >
+          <span class="text-[0.8rem]">✦</span>
+          Lash Club · Girls Crew
+        </span>
+        <h2
+          id="lash-club-titulo"
+          class="mt-5 font-display text-3xl leading-[1.03] tracking-[-0.02em] text-ink-inverse md:text-[3rem]"
+        >
+          Sé parte de nuestra{" "}
+          <span class="display-italic text-[#f3c3d4]">comunidad</span>
+        </h2>
+        <p class="mt-4 max-w-[30rem] text-base leading-relaxed text-ink-inverse-soft">
+          Conviértete en embajadora, comparte tu experiencia y gana un
+          <strong class="text-ink-inverse">servicio gratis cada mes</strong>{" "}
+          cumpliendo metas sencillas.
+        </p>
+
+        <div class="mt-6 flex items-center gap-3 text-sm text-ink-inverse-soft">
+          <span class="font-semibold text-[#f3c3d4]">1. Postula</span>
+          <span aria-hidden="true" class="text-[#f3c3d4]">→</span>
+          <span class="font-semibold text-[#f3c3d4]">2. Comparte</span>
+          <span aria-hidden="true" class="text-[#f3c3d4]">→</span>
+          <span class="font-semibold text-[#f3c3d4]">3. Gana tu servicio</span>
+        </div>
+
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href="/lash-club/" class="btn btn-primary">
+            Quiero ser embajadora
+          </a>
+          <a
+            href={site.contact.whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-ghost-inverse"
+          >
+            Postular por WhatsApp
+          </a>
+        </div>
+        <p class="mt-5 text-xs tracking-[0.14em] text-ink-inverse-dim uppercase">
+          Cupos limitados por mes · Postulaciones abiertas
+        </p>
+      </div>
+
+      <ul class="reveal grid gap-4">
+        <li class="rounded-xl bg-white/5 px-5 py-4 shadow-[inset_0_0_0_1px_rgba(255,241,246,0.10)]">
+          <span class="block font-display text-lg text-ink-inverse">
+            Servicio gratuito mensual
+          </span>
+          <span class="mt-1 block text-sm text-ink-inverse-soft">
+            Cumple tu meta de contenido y consigue 3 clientas nuevas.
+          </span>
+        </li>
+        <li class="rounded-xl bg-white/5 px-5 py-4 shadow-[inset_0_0_0_1px_rgba(255,241,246,0.10)]">
+          <span class="block font-display text-lg text-ink-inverse">
+            Comunidad Girls Crew
+          </span>
+          <span class="mt-1 block text-sm text-ink-inverse-soft">
+            Conéctate con otras embajadoras y con la marca.
+          </span>
+        </li>
+        <li class="rounded-xl bg-white/5 px-5 py-4 shadow-[inset_0_0_0_1px_rgba(255,241,246,0.10)]">
+          <span class="block font-display text-lg text-ink-inverse">
+            Oportunidades especiales
+          </span>
+          <span class="mt-1 block text-sm text-ink-inverse-soft">
+            Campañas, lanzamientos y colaboraciones.
+          </span>
+        </li>
+      </ul>
+
+      <div class="reveal">
+        <img
+          src="/media/embajadora.webp"
+          alt="Embajadora Lash Club Girls Crew"
+          loading="lazy"
+          decoding="async"
+          class="mx-auto aspect-[9/16] w-full max-w-[15rem] rounded-[1.5rem] object-cover shadow-[0_24px_60px_-30px_rgba(0,0,0,0.8)] ring-1 ring-white/15"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .lc-card {
+    animation: lc-glow 4.5s var(--ease-fluid) infinite;
+  }
+
+  .lc-spark {
+    position: absolute;
+    z-index: 1;
+    background: #fff;
+    clip-path: polygon(
+      50% 0%,
+      62% 38%,
+      100% 50%,
+      62% 62%,
+      50% 100%,
+      38% 62%,
+      0% 50%,
+      38% 38%
+    );
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.9));
+    animation: lc-twinkle 3s var(--ease-fluid) infinite;
+    pointer-events: none;
+  }
+
+  .lc-spark-a {
+    top: 1.5rem;
+    left: 12%;
+    width: 0.5rem;
+    height: 0.5rem;
+  }
+
+  .lc-spark-b {
+    top: 22%;
+    right: 7%;
+    width: 0.34rem;
+    height: 0.34rem;
+    animation-delay: 0.9s;
+  }
+
+  .lc-spark-c {
+    bottom: 18%;
+    left: 5%;
+    width: 0.3rem;
+    height: 0.3rem;
+    animation-delay: 1.6s;
+  }
+
+  .lc-spark-d {
+    bottom: 2.5rem;
+    right: 16%;
+    width: 0.44rem;
+    height: 0.44rem;
+    animation-delay: 2.2s;
+  }
+
+  .lc-spark-e {
+    top: 46%;
+    left: 48%;
+    width: 0.28rem;
+    height: 0.28rem;
+    animation-delay: 1.2s;
+  }
+
+  @keyframes lc-twinkle {
+    0%,
+    100% {
+      opacity: 0;
+      transform: scale(0.4) rotate(0deg);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.2) rotate(22deg);
+    }
+  }
+
+  @keyframes lc-glow {
+    0%,
+    100% {
+      box-shadow:
+        inset 0 0 0 1px rgba(255, 241, 246, 0.1),
+        0 0 40px -18px rgba(231, 154, 185, 0.5);
+    }
+    50% {
+      box-shadow:
+        inset 0 0 0 1px rgba(255, 241, 246, 0.2),
+        0 0 64px -12px rgba(231, 154, 185, 0.8);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .lc-card,
+    .lc-spark {
+      animation: none;
+    }
+  }
+</style>
