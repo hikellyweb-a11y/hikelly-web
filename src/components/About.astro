@@ -25,8 +25,28 @@ import { site } from "../data/site";
   <div id="estudio" class="mt-12 grid scroll-mt-28 items-center gap-8 rounded-[2rem] bg-bg-soft p-6 sm:p-10 md:grid-cols-[1fr_0.75fr]" aria-labelledby="estudio-titulo">
     <div>
       <p class="kicker">Conoce el estudio</p>
-      <h3 id="estudio-titulo" class="mt-3 text-3xl text-ink md:text-5xl">Así es Hi Kelly por dentro</h3>
-      <p class="mt-4 text-ink-soft">{site.contact.address}</p>
+      <h3 id="estudio-titulo" class="mt-3 text-3xl text-ink md:text-5xl">
+        Así es Hi Kelly <span class="display-italic">por dentro</span>
+      </h3>
+      <p class="mt-4 max-w-[34rem] text-lg leading-relaxed text-ink-soft">
+        Un espacio cálido y pensado para ti: llega, relájate y sal con esa
+        mirada que llevas dentro.
+      </p>
+      <ul class="mt-6 grid gap-3 text-sm leading-relaxed text-ink-soft">
+        <li class="flex items-start gap-3">
+          <span class="mt-0.5 text-accent" aria-hidden="true">✦</span>
+          Atención 1:1 y diseño a tu medida
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="mt-0.5 text-accent" aria-hidden="true">✦</span>
+          Materiales cruelty-free certificados
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="mt-0.5 text-accent" aria-hidden="true">✦</span>
+          Diagnóstico sin costo al agendar
+        </li>
+      </ul>
+      <p class="mt-6 text-xs text-ink-dim">{site.contact.address}</p>
       <a class="btn btn-primary mt-6" href={site.contact.whatsappUrl} target="_blank" rel="noopener noreferrer">Reservar mi hora</a>
     </div>
     <video class="mx-auto aspect-[9/16] w-full max-w-[18rem] rounded-[1.5rem] bg-night object-cover" controls playsinline preload="none" poster="/media/estudio-lash-club.webp" aria-label="Recorrido en video por el estudio Hi Kelly">
