@@ -89,6 +89,11 @@ collections:
       - { label: "Precio", name: "price", widget: "string" }
       - { label: "Nota", name: "note", widget: "string" }
       - { label: "Botón", name: "cta", widget: "string", required: false }
+      - label: "Galería"
+        name: "gallery"
+        widget: "list"
+        required: false
+        field: { label: "Imagen", name: "imagen", widget: "image" }
 
   - name: config
     label: "Configuración"

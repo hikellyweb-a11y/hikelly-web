@@ -59,6 +59,7 @@ const cursos = defineCollection({
     price: z.string(),
     note: z.string(),
     cta: z.string().optional(),
+    gallery: z.array(z.string()).optional(),
   }),
 });
 

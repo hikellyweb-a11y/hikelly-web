@@ -56,15 +56,20 @@ const productos = (await getCollection("productos")).map((entry) => ({
   href: `/productos/${entry.id}/`,
 }));
 
-const cursos = (await getCollection("cursos")).map((entry) => ({
-  name: entry.data.name,
-  image: entry.data.image,
-  alt: entry.data.alt,
-  text: entry.data.text,
-  price: entry.data.price,
-  note: entry.data.note,
-  cta: entry.data.cta,
-}));
+const cursos = (await getCollection("cursos")).map((entry) => {
+  const images = [entry.data.image, ...(entry.data.gallery ?? [])];
+
+  return {
+    name: entry.data.name,
+    image: entry.data.image,
+    alt: entry.data.alt,
+    text: entry.data.text,
+    price: entry.data.price,
+    note: entry.data.note,
+    cta: entry.data.cta,
+    images,
+  };
+});
 ---
 
 <Layout>
