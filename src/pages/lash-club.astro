@@ -17,7 +17,8 @@ import { site } from "../data/site";
         Volver al inicio
       </a>
 
-      <div class="mt-8 max-w-[44rem]">
+      <div class="mt-8 grid items-center gap-8 rounded-[2rem] border border-[var(--color-line)] bg-bg-soft p-6 sm:p-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-14">
+        <div class="max-w-[44rem]">
         <div class="mb-4 flex items-center gap-3">
           <span class="hairline w-10 bg-accent"></span>
           <span class="kicker mb-0">Programa de embajadoras</span>
@@ -42,6 +43,21 @@ import { site } from "../data/site";
             Conoce el estudio
           </a>
         </div>
+        </div>
+
+        <figure class="relative mx-auto w-full max-w-md overflow-hidden rounded-t-[8rem] rounded-b-[1.5rem] border border-[var(--color-line)] bg-bg-raise shadow-lg">
+          <img
+            src="/media/estudio-lash-club.webp"
+            alt="Estudio Hi Kelly Beauty"
+            width="810"
+            height="1440"
+            class="block aspect-[4/5] w-full object-cover"
+          />
+          <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-night via-night/70 to-transparent px-6 pt-14 pb-5 text-ink-inverse">
+            <span class="block text-xs font-semibold tracking-widest uppercase">Detrás de Lash Club</span>
+            <span class="font-display text-2xl">Hi Kelly Beauty Estudio</span>
+          </figcaption>
+        </figure>
       </div>
 
       <div class="mt-14 max-w-[46rem] space-y-10 text-sm leading-relaxed text-ink-soft">
