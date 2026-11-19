@@ -4,6 +4,7 @@ export const GET: APIRoute = ({ site }) => {
   const base = site?.href.replace(/\/$/, "") ?? "";
   const body = `User-agent: *
 Allow: /
+Disallow: /admin/
 
 Sitemap: ${base}/sitemap-index.xml
 `;

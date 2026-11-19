@@ -14,9 +14,43 @@ export async function getStaticPaths() {
 }
 
 const { product } = Astro.props as { product: Product };
+
+const parsePrice = (value: string): number | undefined => {
+  const match = value.replace(/\./g, "").match(/(\d+)/);
+  return match ? parseInt(match[1], 10) : undefined;
+};
+
+const productPrice = parsePrice(product.price);
+const productUrl = `${site.domain}${Astro.url.pathname}`;
+
+const productSchema = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  name: product.name,
+  description: product.intro,
+  image: `${site.domain}${product.image}`,
+  brand: { "@type": "Brand", name: site.brand },
+  ...(productPrice != null && {
+    offers: {
+      "@type": "Offer",
+      priceCurrency: "CLP",
+      price: productPrice,
+      availability: "https://schema.org/InStock",
+      url: productUrl,
+    },
+  }),
+  ...(product.rating != null && {
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: product.rating,
+      reviewCount: product.reviews ?? 0,
+    },
+  }),
+};
 ---
 
-<Layout title={`${product.name} | ${site.brand}`}>
+<Layout title={`${product.name} | ${site.brand}`} description={product.intro}>
+  <script type="application/ld+json" set:html={JSON.stringify(productSchema)} />
   <div class="pt-28 md:pt-36">
     <section class="shell pb-24 md:pb-32">
       <a

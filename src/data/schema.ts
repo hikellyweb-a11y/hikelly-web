@@ -12,17 +12,17 @@ export const graph = {
       url: site.domain,
       image: `${site.domain}${site.seo.ogImage}`,
       email: site.contact.email,
-      telephone: site.contact.whatsapp,
+      telephone: site.contact.whatsapp.replace(/\s+/g, ""),
       priceRange: "$$",
       address: {
         "@type": "PostalAddress",
-        streetAddress: site.contact.address,
-        addressLocality: "Providencia",
+        streetAddress: "Metro San Alberto Hurtado",
+        addressLocality: "Estación Central",
         addressRegion: "Región Metropolitana",
         addressCountry: "CL",
       },
       openingHours: site.contact.hours,
-      sameAs: [site.contact.instagram, site.contact.tiktok],
+      sameAs: [site.contact.instagram, site.contact.tiktok].filter(Boolean),
       makesOffer: site.collections.map((collection) => ({
         "@type": "Offer",
         name: collection.name,
@@ -46,14 +46,6 @@ export const graph = {
       description: site.seo.description,
       isPartOf: { "@id": `${site.domain}/#website` },
       inLanguage: "es-CL",
-    },
-    {
-      "@type": "FAQPage",
-      mainEntity: site.faq.map((item) => ({
-        "@type": "Question",
-        name: item.q,
-        acceptedAnswer: { "@type": "Answer", text: item.a },
-      })),
     },
   ],
 };

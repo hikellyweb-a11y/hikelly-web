@@ -15,9 +15,44 @@ export async function getStaticPaths() {
 
 const { service } = Astro.props as { service: Service };
 const hasGallery = Boolean(service.gallery && service.gallery.length > 0);
+
+const parsePrice = (value: string): number | undefined => {
+  const match = value.replace(/\./g, "").match(/(\d+)/);
+  return match ? parseInt(match[1], 10) : undefined;
+};
+
+const servicePrice = parsePrice(service.price);
+const serviceUrl = `${site.domain}${Astro.url.pathname}`;
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: service.name,
+  description: service.intro,
+  url: serviceUrl,
+  provider: { "@id": `${site.domain}/#business` },
+  areaServed: "CL",
+  ...(servicePrice != null && {
+    offers: {
+      "@type": "Offer",
+      priceCurrency: "CLP",
+      price: servicePrice,
+      availability: "https://schema.org/InStock",
+      url: serviceUrl,
+    },
+  }),
+  ...(service.rating != null && {
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: service.rating,
+      reviewCount: service.reviews ?? 0,
+    },
+  }),
+};
 ---
 
-<Layout title={`${service.name} | ${site.brand}`}>
+<Layout title={`${service.name} | ${site.brand}`} description={service.intro}>
+  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
   <div class="pt-28 md:pt-36">
     <section class="shell pb-24 md:pb-32">
       <a

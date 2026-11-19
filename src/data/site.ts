@@ -14,9 +14,9 @@ export const site = {
     whatsapp: "+56 9 2638 6555",
     whatsappUrl: "https://wa.me/56926386555",
     instagram: "https://www.instagram.com/hikelly.cl/",
-    tiktok: "https://www.tiktok.com/",
+    tiktok: "",
     email: "hola@hikellybeauty.cl",
-    address: "Av. Providencia 1234, Local 5, Santiago",
+    address: "Metro San Alberto Hurtado, Estación Central",
     hours: "Lunes a sábado, 10:00 a 20:00",
   },
   cta: {
