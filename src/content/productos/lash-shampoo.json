@@ -1,0 +1,17 @@
+{
+  "name": "Lash Shampoo",
+  "kicker": "Productos · Cuidado",
+  "intro": "Espuma limpiadora y desmaquillante para extensiones. Uso diario en casa y en salón.",
+  "image": "/media/lash-shampoo-white.webp",
+  "alt": "Lash shampoo para limpiar extensiones de pestañas",
+  "price": "$9.990",
+  "note": "Ver presentaciones",
+  "rating": 4.9,
+  "reviews": 12,
+  "badge": "Nuevo",
+  "variants": [
+    { "name": "50 ml", "price": "$9.990", "description": "Ideal para probar y para llevar de viaje." },
+    { "name": "100 ml", "price": "$14.990", "description": "El favorito para uso diario en casa." },
+    { "name": "250 ml", "price": "$19.990", "description": "Formato salón para uso prolongado." }
+  ]
+}

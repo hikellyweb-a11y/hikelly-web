@@ -1,0 +1,38 @@
+{
+  "name": "Cejas",
+  "kicker": "Servicios · Cejas",
+  "intro": "Microblading, laminado y tinte. Diseñamos la ceja según tu rostro y sellamos un resultado natural.",
+  "image": "/media/servicios/cejas/laminado.webp",
+  "alt": "Cejas con diseño personalizado",
+  "price": "Desde $49.000",
+  "note": "Ver estilos y valores",
+  "rating": 4.8,
+  "reviews": 64,
+  "badge": "Tendencia",
+  "styles": [
+    {
+      "name": "Microblading",
+      "price": "Desde $49.000",
+      "description": "Pelo a pelo con pigmento para un efecto natural.",
+      "image": "/media/servicios/cejas/cejas.webp"
+    },
+    {
+      "name": "Laminado de Cejas",
+      "price": "Desde $29.000",
+      "description": "Peinado y fijación de la ceja natural.",
+      "image": "/media/servicios/cejas/laminado.webp"
+    },
+    {
+      "name": "Laminado y Tinte",
+      "price": "Desde $39.000",
+      "description": "Laminado + color para más definición.",
+      "image": "/media/servicios/cejas/laminado-tinte.webp"
+    },
+    {
+      "name": "Perfilado y Tinte",
+      "price": "Desde $19.000",
+      "description": "Forma y color para enmarcar la mirada.",
+      "image": "/media/servicios/cejas/perfilado-tinte.webp"
+    }
+  ]
+}

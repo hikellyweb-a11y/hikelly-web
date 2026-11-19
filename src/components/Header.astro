@@ -1,6 +1,12 @@
 ---
 import { site } from "../data/site";
 
+interface Props {
+  brand?: string;
+}
+
+const { brand = site.brand } = Astro.props;
+
 const onHome = Astro.url.pathname === "/";
 const base = onHome ? "" : "/";
 
@@ -26,11 +32,11 @@ const ctaHref = site.cta.primary.href;
       <a
         href="/"
         class="brand-lockup"
-        aria-label={`${site.brand}, ir al inicio`}
+        aria-label={`${brand}, ir al inicio`}
       >
         <img
           src="/logo/logo-horizontal.webp"
-          alt="Hi Kelly Beauty Estudio"
+          alt={brand}
           width="480"
           height="387"
           class="brand-logo h-14 w-auto transition-transform duration-700 ease-fluid sm:h-20 lg:h-24"

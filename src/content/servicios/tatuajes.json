@@ -1,0 +1,28 @@
+{
+  "name": "Tatuajes",
+  "kicker": "Servicios · Tatuajes",
+  "intro": "Tatuajes finos y personalizados, diseñados a tu medida. El valor depende del tamaño y el nivel de detalle.",
+  "image": "/media/servicios/tattos/tatuajes.webp",
+  "alt": "Tatuajes personalizados",
+  "price": "Valor según diseño",
+  "note": "Ver trabajos",
+  "rating": 4.9,
+  "reviews": 32,
+  "badge": "A medida",
+  "styles": [],
+  "gallery": [
+    "/media/servicios/tattos/tatuaje-01.webp",
+    "/media/servicios/tattos/tatuaje-02.webp",
+    "/media/servicios/tattos/tatuaje-03.webp",
+    "/media/servicios/tattos/tatuaje-04.webp",
+    "/media/servicios/tattos/tatuaje-05.webp",
+    "/media/servicios/tattos/tatuaje-06.webp",
+    "/media/servicios/tattos/tatuaje-07.webp",
+    "/media/servicios/tattos/tatuaje-08.webp",
+    "/media/servicios/tattos/tatuaje-09.webp",
+    "/media/servicios/tattos/tatuaje-10.webp",
+    "/media/servicios/tattos/tatuaje-11.webp",
+    "/media/servicios/tattos/tatuaje-12.webp",
+    "/media/servicios/tattos/tatuaje-13.webp"
+  ]
+}

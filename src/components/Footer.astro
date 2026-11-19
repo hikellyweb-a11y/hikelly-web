@@ -1,6 +1,20 @@
 ---
 import { site } from "../data/site";
 
+interface Props {
+  brand?: string;
+  tagline?: string;
+  instagram?: string;
+  tiktok?: string;
+}
+
+const {
+  brand = site.brand,
+  tagline = site.tagline,
+  instagram = site.contact.instagram,
+  tiktok = site.contact.tiktok,
+} = Astro.props;
+
 const year = new Date().getFullYear();
 const base = Astro.url.pathname === "/" ? "" : "/";
 ---
@@ -10,17 +24,17 @@ const base = Astro.url.pathname === "/" ? "" : "/";
     <div>
       <div class="flex flex-col gap-2">
         <span class="text-xs font-semibold tracking-[0.14em] text-ink uppercase sm:text-sm sm:tracking-[0.2em]">
-          {site.brand}
+          {brand}
         </span>
         <span class="hairline w-14 bg-accent"></span>
       </div>
       <p class="mt-4 max-w-[26rem] text-sm leading-relaxed text-ink-soft">
-        {site.tagline}. Extensiones hechas a mano, kits para hacerlo en casa y
+        {tagline}. Extensiones hechas a mano, kits para hacerlo en casa y
         cuidado de tu pestaña natural.
       </p>
       <div class="mt-6 flex gap-3">
         <a
-          href={site.contact.instagram}
+          href={instagram}
           class="social-breathe inline-flex items-center gap-2 rounded-full px-3 py-2 text-sm text-ink-soft shadow-[inset_0_0_0_1px_var(--color-line)] transition-all duration-700 ease-fluid hover:text-ink"
           target="_blank"
           rel="noopener noreferrer"
@@ -43,7 +57,7 @@ const base = Astro.url.pathname === "/" ? "" : "/";
           Instagram
         </a>
         <a
-          href={site.contact.tiktok}
+          href={tiktok}
           class="social-breathe inline-flex items-center gap-2 rounded-full px-3 py-2 text-sm text-ink-soft shadow-[inset_0_0_0_1px_var(--color-line)] transition-all duration-700 ease-fluid hover:text-ink"
           target="_blank"
           rel="noopener noreferrer"
@@ -90,7 +104,7 @@ const base = Astro.url.pathname === "/" ? "" : "/";
   </div>
 
   <div class="shell flex flex-wrap items-center justify-between gap-4 border-t border-[var(--color-line)] py-6 text-xs text-ink-dim">
-    <p>© {year} {site.brand}. Todos los derechos reservados.</p>
+    <p>© {year} {brand}. Todos los derechos reservados.</p>
     <p>{site.footer.menuHint}</p>
   </div>
 </footer>

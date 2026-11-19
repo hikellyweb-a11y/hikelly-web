@@ -5,7 +5,54 @@ import Showcase from "../components/Showcase.astro";
 import About from "../components/About.astro";
 import LashClub from "../components/LashClub.astro";
 import FinalCta from "../components/FinalCta.astro";
-import { servicios, productos, cursos } from "../data/catalog";
+import { getCollection } from "astro:content";
+
+const servicios = (await getCollection("servicios")).map((entry) => {
+  const images: string[] = [];
+  for (const style of entry.data.styles) {
+    if (style.image) images.push(style.image);
+    if (style.gallery) images.push(...style.gallery);
+  }
+  if (entry.data.gallery) images.push(...entry.data.gallery);
+  if (!images.includes(entry.data.image)) images.unshift(entry.data.image);
+
+  return {
+    name: entry.data.name,
+    image: entry.data.image,
+    alt: entry.data.alt,
+    text: entry.data.intro,
+    price: entry.data.price,
+    note: entry.data.note,
+    rating: entry.data.rating,
+    reviews: entry.data.reviews,
+    badge: entry.data.badge,
+    href: `/servicios/${entry.id}/`,
+    images: [...new Set(images)],
+  };
+});
+
+const productos = (await getCollection("productos")).map((entry) => ({
+  name: entry.data.name,
+  image: entry.data.image,
+  alt: entry.data.alt,
+  text: entry.data.intro,
+  price: entry.data.price,
+  note: entry.data.note,
+  rating: entry.data.rating,
+  reviews: entry.data.reviews,
+  badge: entry.data.badge,
+  href: `/productos/${entry.id}/`,
+}));
+
+const cursos = (await getCollection("cursos")).map((entry) => ({
+  name: entry.data.name,
+  image: entry.data.image,
+  alt: entry.data.alt,
+  text: entry.data.text,
+  price: entry.data.price,
+  note: entry.data.note,
+  cta: entry.data.cta,
+}));
 ---
 
 <Layout>

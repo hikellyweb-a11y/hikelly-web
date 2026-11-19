@@ -1,0 +1,14 @@
+{
+  "name": "Removedor Dlux",
+  "kicker": "Productos · Cuidado",
+  "intro": "Removedor de adhesivo para retirar extensiones de forma segura y sin dañar tu pestaña natural.",
+  "image": "/media/productos/removedor-dlux.webp",
+  "alt": "Removedor Dlux de adhesivo",
+  "price": "$6.990",
+  "note": "Ver detalle",
+  "rating": 4.8,
+  "reviews": 11,
+  "variants": [
+    { "name": "Removedor de Adhesivo", "price": "$6.990", "description": "Retiro seguro y sin dañar la pestaña natural." }
+  ]
+}

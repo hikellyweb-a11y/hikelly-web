@@ -1,12 +1,15 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import { services, type Service } from "../../data/services";
+import { getCollection, type CollectionEntry } from "astro:content";
 import { site, waLink } from "../../data/site";
 
-export function getStaticPaths() {
-  return services.map((service) => ({
-    params: { slug: service.slug },
-    props: { service },
+type Service = CollectionEntry<"servicios">["data"];
+
+export async function getStaticPaths() {
+  const services = await getCollection("servicios");
+  return services.map((entry) => ({
+    params: { slug: entry.id },
+    props: { service: entry.data },
   }));
 }
 

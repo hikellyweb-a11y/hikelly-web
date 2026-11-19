@@ -1,4 +1,5 @@
 ---
+import { getCollection } from "astro:content";
 import { site } from "../data/site";
 import { graph } from "../data/schema";
 import Header from "../components/Header.astro";
@@ -15,11 +16,79 @@ const {
   description = site.seo.description,
 } = Astro.props;
 
+const configs = await getCollection("config");
+const cfg = configs[0]?.data;
+const colors = cfg?.colores;
+const marca = cfg?.marca;
+const contacto = cfg?.contacto;
+
+const fallbackFont = {
+  display: '"Fraunces", ui-serif, Georgia, serif',
+  sans: '"Manrope", ui-sans-serif, system-ui, sans-serif',
+  href: "https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=Manrope:wght@400;500;600;700&display=swap",
+};
+
+const fontCombos = {
+  "fraunces-manrope": fallbackFont,
+  "playfair-inter": {
+    display: '"Playfair Display", ui-serif, Georgia, serif',
+    sans: '"Inter", ui-sans-serif, system-ui, sans-serif',
+    href: "https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@400;500;600;700&display=swap",
+  },
+  "cormorant-montserrat": {
+    display: '"Cormorant Garamond", ui-serif, Georgia, serif',
+    sans: '"Montserrat", ui-sans-serif, system-ui, sans-serif',
+    href: "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Montserrat:wght@400;500;600;700&display=swap",
+  },
+  "marcellus-jost": {
+    display: '"Marcellus", ui-serif, Georgia, serif',
+    sans: '"Jost", ui-sans-serif, system-ui, sans-serif',
+    href: "https://fonts.googleapis.com/css2?family=Marcellus&family=Jost:wght@400;500;600;700&display=swap",
+  },
+};
+
+const tipoCombo = (cfg?.tipografia?.combo ?? "fraunces-manrope") as keyof typeof fontCombos;
+const font = fontCombos[tipoCombo] ?? fallbackFont;
+
+const colorVars = colors
+  ? [
+      `--color-accent: ${colors.accent}`,
+      `--color-accent-strong: ${colors.accentStrong}`,
+      `--color-accent-ink: ${colors.accentInk}`,
+      `--color-rose-deep: ${colors.accentStrong}`,
+      `--color-bg: ${colors.bg}`,
+      `--color-bg-soft: ${colors.bgSoft}`,
+      `--color-bg-raise: ${colors.bgRaise}`,
+      `--color-ink: ${colors.ink}`,
+      `--color-ink-soft: ${colors.inkSoft}`,
+      `--color-ink-dim: ${colors.inkDim}`,
+      `--color-night: ${colors.night}`,
+      `--color-night-soft: ${colors.nightSoft}`,
+      `--color-night-raise: ${colors.nightRaise}`,
+      `--color-ink-inverse: ${colors.inkInverse}`,
+      `--color-ink-inverse-soft: ${colors.inkInverseSoft}`,
+      `--color-ink-inverse-dim: ${colors.inkInverseDim}`,
+      `--color-accent-soft: color-mix(in srgb, ${colors.accent} 16%, transparent)`,
+      `--color-line: color-mix(in srgb, ${colors.ink} 12%, transparent)`,
+      `--color-line-strong: color-mix(in srgb, ${colors.ink} 26%, transparent)`,
+    ]
+  : [];
+
+const fontVars = [
+  `--font-display: ${font.display}`,
+  `--font-sans: ${font.sans}`,
+];
+
+const rootStyle = [...colorVars, ...fontVars].join("; ") || undefined;
+
+const themeColor = colors?.bg ?? "#fff7fa";
+const brandName = marca?.nombre ?? site.brand;
+
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 ---
 
 <!doctype html>
-<html lang="es-CL">
+<html lang="es-CL" style={rootStyle}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -27,13 +96,13 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
     <meta name="robots" content="index, follow, max-image-preview:large" />
-    <meta name="theme-color" content="#fff7fa" />
+    <meta name="theme-color" content={themeColor} />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="es_CL" />
-    <meta property="og:site_name" content={site.brand} />
+    <meta property="og:site_name" content={brandName} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
@@ -42,10 +111,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=Manrope:wght@400;500;600;700&display=swap"
-    />
+    <link rel="stylesheet" href={font.href} />
 
     <link rel="sitemap" href="/sitemap-index.xml" />
     <script
@@ -59,11 +125,16 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
       class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:rounded-full focus:bg-accent focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-accent-ink"
       >Ir al contenido</a
     >
-    <Header />
+    <Header brand={brandName} />
     <main id="contenido">
       <slot />
     </main>
-    <Footer />
+    <Footer
+      brand={brandName}
+      tagline={marca?.tagline}
+      instagram={contacto?.instagram}
+      tiktok={contacto?.tiktok}
+    />
 
     <script>
       import "../scripts/sparkle";

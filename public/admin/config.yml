@@ -1,0 +1,152 @@
+locale: "es"
+
+backend:
+  name: github
+  repo: hikellyweb-a11y/hikelly-web
+  branch: main
+
+local_backend: true
+
+media_folder: "public/media"
+public_folder: "/media"
+
+collections:
+  - name: servicios
+    label: "Servicios"
+    label_singular: "Servicio"
+    folder: "src/content/servicios"
+    create: true
+    format: json
+    extension: json
+    fields:
+      - { label: "Nombre", name: "name", widget: "string" }
+      - { label: "Kicker", name: "kicker", widget: "string" }
+      - { label: "Introducción", name: "intro", widget: "text" }
+      - { label: "Imagen", name: "image", widget: "image" }
+      - { label: "Texto alternativo", name: "alt", widget: "string" }
+      - { label: "Precio", name: "price", widget: "string" }
+      - { label: "Nota", name: "note", widget: "string" }
+      - { label: "Rating", name: "rating", widget: "number", value_type: "float", required: false }
+      - { label: "Reseñas", name: "reviews", widget: "number", required: false }
+      - { label: "Insignia", name: "badge", widget: "string", required: false }
+      - label: "Estilos"
+        name: "styles"
+        widget: "list"
+        fields:
+          - { label: "Nombre", name: "name", widget: "string" }
+          - { label: "Precio", name: "price", widget: "string" }
+          - { label: "Descripción", name: "description", widget: "text" }
+          - { label: "Imagen", name: "image", widget: "image" }
+          - label: "Galería"
+            name: "gallery"
+            widget: "list"
+            required: false
+            field: { label: "Imagen", name: "imagen", widget: "image" }
+      - label: "Galería (solo Tatuajes)"
+        name: "gallery"
+        widget: "list"
+        required: false
+        field: { label: "Imagen", name: "imagen", widget: "image" }
+
+  - name: productos
+    label: "Productos"
+    label_singular: "Producto"
+    folder: "src/content/productos"
+    create: true
+    format: json
+    extension: json
+    fields:
+      - { label: "Nombre", name: "name", widget: "string" }
+      - { label: "Kicker", name: "kicker", widget: "string" }
+      - { label: "Introducción", name: "intro", widget: "text" }
+      - { label: "Imagen", name: "image", widget: "image" }
+      - { label: "Texto alternativo", name: "alt", widget: "string" }
+      - { label: "Precio", name: "price", widget: "string" }
+      - { label: "Nota", name: "note", widget: "string" }
+      - { label: "Rating", name: "rating", widget: "number", value_type: "float", required: false }
+      - { label: "Reseñas", name: "reviews", widget: "number", required: false }
+      - { label: "Insignia", name: "badge", widget: "string", required: false }
+      - label: "Presentaciones"
+        name: "variants"
+        widget: "list"
+        fields:
+          - { label: "Nombre", name: "name", widget: "string" }
+          - { label: "Precio", name: "price", widget: "string" }
+          - { label: "Descripción", name: "description", widget: "text" }
+
+  - name: cursos
+    label: "Cursos"
+    label_singular: "Curso"
+    folder: "src/content/cursos"
+    create: true
+    format: json
+    extension: json
+    fields:
+      - { label: "Nombre", name: "name", widget: "string" }
+      - { label: "Imagen", name: "image", widget: "image" }
+      - { label: "Texto alternativo", name: "alt", widget: "string" }
+      - { label: "Descripción", name: "text", widget: "text" }
+      - { label: "Precio", name: "price", widget: "string" }
+      - { label: "Nota", name: "note", widget: "string" }
+      - { label: "Botón", name: "cta", widget: "string", required: false }
+
+  - name: config
+    label: "Configuración"
+    label_singular: "Configuración"
+    files:
+      - name: site
+        label: "Configuración del sitio"
+        file: "src/content/config/site.json"
+        fields:
+          - label: "Colores"
+            name: "colores"
+            widget: "object"
+            collapsed: false
+            fields:
+              - { label: "Acento (marca)", name: "accent", widget: "color" }
+              - { label: "Acento fuerte (hover)", name: "accentStrong", widget: "color" }
+              - { label: "Texto sobre acento", name: "accentInk", widget: "color" }
+              - { label: "Fondo", name: "bg", widget: "color" }
+              - { label: "Fondo suave", name: "bgSoft", widget: "color" }
+              - { label: "Fondo elevado", name: "bgRaise", widget: "color" }
+              - { label: "Tinta (texto principal)", name: "ink", widget: "color" }
+              - { label: "Tinta suave", name: "inkSoft", widget: "color" }
+              - { label: "Tinta tenue", name: "inkDim", widget: "color" }
+              - { label: "Noche (oscuro)", name: "night", widget: "color" }
+              - { label: "Noche suave", name: "nightSoft", widget: "color" }
+              - { label: "Noche elevada", name: "nightRaise", widget: "color" }
+              - { label: "Texto claro", name: "inkInverse", widget: "color" }
+              - { label: "Claro suave", name: "inkInverseSoft", widget: "color" }
+              - { label: "Claro tenue", name: "inkInverseDim", widget: "color" }
+          - label: "Tipografía"
+            name: "tipografia"
+            widget: "object"
+            collapsed: false
+            fields:
+              - label: "Combinación de fuentes"
+                name: "combo"
+                widget: "select"
+                default: "fraunces-manrope"
+                options:
+                  - { label: "Fraunces + Manrope (actual)", value: "fraunces-manrope" }
+                  - { label: "Playfair Display + Inter", value: "playfair-inter" }
+                  - { label: "Cormorant Garamond + Montserrat", value: "cormorant-montserrat" }
+                  - { label: "Marcellus + Jost", value: "marcellus-jost" }
+          - label: "Marca"
+            name: "marca"
+            widget: "object"
+            fields:
+              - { label: "Nombre completo", name: "nombre", widget: "string" }
+              - { label: "Nombre corto", name: "nombreCorto", widget: "string" }
+              - { label: "Tagline", name: "tagline", widget: "string" }
+          - label: "Contacto"
+            name: "contacto"
+            widget: "object"
+            fields:
+              - { label: "WhatsApp (texto)", name: "whatsapp", widget: "string" }
+              - { label: "WhatsApp (URL)", name: "whatsappUrl", widget: "string" }
+              - { label: "Instagram", name: "instagram", widget: "string" }
+              - { label: "TikTok", name: "tiktok", widget: "string" }
+              - { label: "Email", name: "email", widget: "string" }
+              - { label: "Dirección", name: "direccion", widget: "string" }
+              - { label: "Horario", name: "horario", widget: "string" }

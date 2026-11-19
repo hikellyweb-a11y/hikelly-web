@@ -1,0 +1,14 @@
+{
+  "name": "Adhesivo Dlux Zeus",
+  "kicker": "Productos · Adhesivos",
+  "intro": "Adhesivo de larga duración para extensiones de pestañas, con secado rápido y baja emisión.",
+  "image": "/media/productos/adhesivo-dlux.webp",
+  "alt": "Adhesivo Dlux Zeus",
+  "price": "$12.990",
+  "note": "Ver detalle",
+  "rating": 4.8,
+  "reviews": 21,
+  "variants": [
+    { "name": "Adhesivo Dlux Zeus 5 ml", "price": "$12.990", "description": "Fijación de larga duración y secado rápido." }
+  ]
+}

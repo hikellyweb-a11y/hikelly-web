@@ -1,0 +1,36 @@
+{
+  "colores": {
+    "accent": "#b05b7b",
+    "accentStrong": "#8e4460",
+    "accentInk": "#2a101c",
+    "bg": "#fff7fa",
+    "bgSoft": "#fbe9f1",
+    "bgRaise": "#f6dce8",
+    "ink": "#3a1a28",
+    "inkSoft": "#7a4d60",
+    "inkDim": "#a98093",
+    "night": "#3a1a28",
+    "nightSoft": "#4a2234",
+    "nightRaise": "#5a2c40",
+    "inkInverse": "#fff1f6",
+    "inkInverseSoft": "#e6c1d2",
+    "inkInverseDim": "#b78ba0"
+  },
+  "tipografia": {
+    "combo": "fraunces-manrope"
+  },
+  "marca": {
+    "nombre": "Hi Kelly Beauty Estudio",
+    "nombreCorto": "Hi Kelly",
+    "tagline": "Pestañas que enmarcan tu mirada"
+  },
+  "contacto": {
+    "whatsapp": "+56 9 2638 6555",
+    "whatsappUrl": "https://wa.me/56926386555",
+    "instagram": "https://www.instagram.com/hikelly.cl/",
+    "tiktok": "https://www.tiktok.com/",
+    "email": "hola@hikellybeauty.cl",
+    "direccion": "Av. Providencia 1234, Local 5, Santiago",
+    "horario": "Lunes a sábado, 10:00 a 20:00"
+  }
+}
