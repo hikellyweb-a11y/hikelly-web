@@ -77,14 +77,14 @@ const hero = site.stops[0];
         <span class="hairline w-10 bg-ink-inverse/45"></span>
         <span class="kicker mb-0 text-ink-inverse-soft">{hero.kicker}</span>
       </div>
-      <h2
+      <h1
         id="hero-titulo"
         class="font-display text-[2.5rem] leading-[1.02] tracking-[-0.02em] text-ink-inverse md:text-[3.75rem]"
       >
         {hero.title}
-      </h2>
+      </h1>
       <p class="mt-5 max-w-[36rem] text-base leading-relaxed text-ink-inverse-soft md:text-lg">
-        {hero.text}
+        {hero.text} · {site.contact.address}
       </p>
       <div class="mt-8 flex flex-wrap gap-3">
         <a href={site.cta.primary.href} target="_blank" rel="noopener noreferrer" class="btn btn-primary">
@@ -100,10 +100,10 @@ const hero = site.stops[0];
   <a
     href="#servicios"
     class="hero-cue absolute inset-x-0 bottom-7 z-20 mx-auto flex w-max flex-col items-center gap-3 text-ink-inverse-soft transition-colors duration-700 ease-fluid hover:text-ink-inverse"
-    aria-label="Desliza para descubrir tu potencial"
+    aria-label="Desliza para descubrir nuestros servicios"
   >
     <span class="text-[0.62rem] font-semibold tracking-[0.26em] uppercase">
-      Desliza y descubre tu potencial
+      Desliza para descubrir nuestros servicios
     </span>
     <span class="hero-cue-track" aria-hidden="true">
       <span class="hero-cue-dot"></span>

@@ -19,7 +19,10 @@ const faqSchema = {
   })),
 };
 
-const servicios = (await getCollection("servicios")).map((entry) => {
+const ordenServicios = new Map(["pestanas", "cejas", "unas", "tatuajes"].map((id, index) => [id, index]));
+const servicios = (await getCollection("servicios"))
+  .sort((a, b) => (ordenServicios.get(a.id) ?? Infinity) - (ordenServicios.get(b.id) ?? Infinity) || a.id.localeCompare(b.id))
+  .map((entry) => {
   const images: string[] = [];
   for (const style of entry.data.styles) {
     if (style.image) images.push(style.image);
@@ -74,17 +77,14 @@ const cursos = (await getCollection("cursos")).map((entry) => {
 
 <Layout>
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
-  <h1 class="sr-only">
-    Hi Kelly Beauty Estudio — extensiones de pestañas a mano, productos de
-    cuidado y cursos para lashistas en Santiago
-  </h1>
+
   <Hero />
   <Showcase
     id="servicios"
     kicker="Servicios"
     title="Servicios para tu"
     accent="estilo"
-    description="Extensiones de pestañas, cejas tatuadas y uñas. Cada servicio se diseña contigo y se agenda por WhatsApp."
+    description="Extensiones de pestañas, diseño de cejas, uñas y tatuajes. Cada servicio se diseña contigo y se agenda por WhatsApp."
     items={servicios}
     tone="soft"
     columns={4}
@@ -93,7 +93,7 @@ const cursos = (await getCollection("cursos")).map((entry) => {
     id="productos"
     kicker="Productos"
     title="Productos para"
-    accent="cuidarla"
+    accent="pestañas"
     description="Kits, limpieza y cuidado para mantener tu set en casa. Despacho a todo Chile en dos días hábiles."
     items={productos}
     tone="plain"

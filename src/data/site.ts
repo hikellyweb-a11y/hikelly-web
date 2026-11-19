@@ -27,8 +27,8 @@ export const site = {
     {
       id: "bienvenida",
       kicker: "Bienvenida",
-      title: "Tu mirada, enmarcada a mano",
-      text: "Diseñamos cada set pestaña por pestaña, según la forma de tu ojo y el efecto que buscas. Nada de plantillas: tu mirada, medida y dibujada para ti.",
+      title: "Tu estilo, a tu medida",
+      text: "Pestañas, cejas, uñas y tatuajes",
       focus: "50% 45%",
       poster: "/media/hero-frame.webp",
       clip: "/video/pestanas-hero.mp4",
@@ -184,7 +184,7 @@ export const site = {
     },
     {
       q: "¿Hacen envíos a regiones?",
-      a: "Sí. Los kits y productos de cuidado se despachan a todo el país en dos días hábiles. Las aplicaciones y mantenciones son solo en el estudio de Providencia.",
+      a: "Sí. Los kits y productos de cuidado se despachan a todo el país en dos días hábiles. Las aplicaciones y mantenciones son solo en nuestro estudio, cerca del Metro San Alberto Hurtado, Estación Central.",
     },
     {
       q: "¿Cuánto cuesta la primera visita?",
