@@ -4,15 +4,15 @@
   "intro": "Fibras para extensiones en distintos efectos y densidades. Elige la que más se adapte a tu trabajo.",
   "image": "/media/productos/fibras-2d.webp",
   "alt": "Fibras de pestañas",
-  "price": "Desde $7.990",
+  "price": "Desde $6.500",
   "note": "Ver presentaciones",
   "rating": 4.9,
   "reviews": 58,
   "badge": "Más vendido",
   "variants": [
-    { "name": "Fibras 2D", "price": "$7.990", "description": "Efecto ligero y natural." },
-    { "name": "Fibras 3D", "price": "$8.990", "description": "Más densidad manteniendo la naturalidad." },
-    { "name": "Fibras 4D", "price": "$9.990", "description": "Volumen intermedio ideal para uso diario." },
-    { "name": "Fibras 5D", "price": "$10.990", "description": "Máxima densidad para miradas intensas." }
+    { "name": "Fibra 2D UU", "price": "$6.500", "description": "Efecto ligero y natural." },
+    { "name": "Fibras 3D", "price": "$6.990", "description": "Más densidad manteniendo la naturalidad." },
+    { "name": "Fibras 4D", "price": "$7.600", "description": "Volumen intermedio ideal para uso diario." },
+    { "name": "Fibras 5D", "price": "$8.500", "description": "Máxima densidad para miradas intensas." }
   ]
 }
