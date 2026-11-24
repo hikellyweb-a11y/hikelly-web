@@ -4,11 +4,11 @@
   "intro": "Cepillo para peinar y mantener el set de extensiones cada mañana.",
   "image": "/media/productos/cepillos.webp",
   "alt": "Cepillo de pestañas",
-  "price": "$4.990",
-  "note": "Ver detalle",
+  "price": "$1.500",
+  "note": "Pack de 50 unidades",
   "rating": 4.7,
   "reviews": 15,
   "variants": [
-    { "name": "Cepillo Limpiador", "price": "$4.990", "description": "Para mantener la caída pareja y limpia." }
+    { "name": "Cepillo Limpiador (50 unidades)", "price": "$1.500", "description": "Pack de 50 unidades para mantener la caída pareja y limpia." }
   ]
 }
