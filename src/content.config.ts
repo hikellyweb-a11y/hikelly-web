@@ -36,6 +36,7 @@ const productos = defineCollection({
     alt: z.string(),
     price: z.string(),
     note: z.string(),
+    promo: z.string().optional(),
     badge: z.string().optional(),
     rating: z.number().optional(),
     reviews: z.number().optional(),
