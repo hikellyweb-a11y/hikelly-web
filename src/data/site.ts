@@ -1,7 +1,7 @@
 export const site = {
   brand: "Hi Kelly Beauty Estudio",
   shortBrand: "Hi Kelly",
-  domain: import.meta.env.SITE ?? "https://hikelly-beauty.vercel.app",
+  domain: import.meta.env.SITE ?? "https://hikelly.cl",
   tagline: "Pestañas que enmarcan tu mirada",
   seo: {
     title: "Hi Kelly Beauty Estudio | Extensiones de pestañas y kits en casa",
