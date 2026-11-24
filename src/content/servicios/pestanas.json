@@ -4,7 +4,7 @@
   "intro": "Efectos anime, rimel, wispy y foxy eyes. Cada set se diseña según la forma de tu ojo y se aplica pestaña por pestaña.",
   "image": "/media/servicios/pestanas/pestanas.webp",
   "alt": "Mirada con extensiones de pestañas",
-  "price": "Desde $39.000",
+  "price": "Desde $30.000",
   "note": "Ver estilos y valores",
   "rating": 4.9,
   "reviews": 86,
@@ -12,7 +12,7 @@
   "styles": [
     {
       "name": "Efecto Anime",
-      "price": "Desde $49.000",
+      "price": "$30.000",
       "description": "Volumen marcado con picos, inspirado en el anime.",
       "image": "/media/servicios/pestanas/efecto-anime.webp",
       "gallery": [
@@ -24,7 +24,7 @@
     },
     {
       "name": "Efecto Rimel",
-      "price": "Desde $39.000",
+      "price": "$33.000",
       "description": "Acabado similar a la máscara de pestañas, natural y definido.",
       "image": "/media/servicios/pestanas/efecto-rimel.webp",
       "gallery": [
@@ -35,7 +35,7 @@
     },
     {
       "name": "Efecto Wispy",
-      "price": "Desde $49.000",
+      "price": "$35.000",
       "description": "Abanicos finos y separados para un efecto suave y esponjoso.",
       "image": "/media/servicios/pestanas/efecto-wispy.webp",
       "gallery": [
@@ -44,7 +44,7 @@
     },
     {
       "name": "Foxy Eyes",
-      "price": "Desde $54.000",
+      "price": "$35.000",
       "description": "Alarga la mirada con más longitud hacia los extremos.",
       "image": "/media/servicios/pestanas/foxy-eyes.webp",
       "gallery": [

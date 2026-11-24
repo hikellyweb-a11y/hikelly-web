@@ -1,27 +1,17 @@
 {
   "name": "Uñas",
   "kicker": "Servicios · Uñas",
-  "intro": "Manicure, semipermanente, acrílicas y diseño. Cuida y decora tus manos con productos de calidad.",
+  "intro": "Esmaltado permanente, softgel y press on. Cuida y decora tus manos con productos de calidad.",
   "image": "/media/servicios/unas/unas.webp",
-  "alt": "Servicio de uñas y manicura",
-  "price": "Desde $25.000",
+  "alt": "Servicio de uñas",
+  "price": "Desde $10.000",
   "note": "Ver estilos y valores",
   "rating": 4.9,
   "reviews": 47,
   "styles": [
     {
-      "name": "Manicure Tradicional",
-      "price": "Desde $12.000",
-      "description": "Limpieza, forma y esmaltado clásico.",
-      "image": "/media/servicios/unas/unas.webp",
-      "gallery": [
-        "/media/servicios/unas/manicure.webp",
-        "/media/servicios/unas/manicure-2.webp"
-      ]
-    },
-    {
-      "name": "Semipermanente",
-      "price": "Desde $18.000",
+      "name": "Esmaltado Permanente",
+      "price": "Desde $15.000",
       "description": "Esmalte en gel de larga duración y brillo intenso.",
       "image": "/media/servicios/unas/semipermanente.webp",
       "gallery": [
@@ -29,23 +19,8 @@
       ]
     },
     {
-      "name": "Acrílicas",
-      "price": "Desde $32.000",
-      "description": "Extensión y estructura con acrílico resistente.",
-      "image": "/media/servicios/unas/nail-art-3.webp",
-      "gallery": [
-        "/media/servicios/unas/nail-art-4.webp"
-      ]
-    },
-    {
-      "name": "Polygel",
-      "price": "Desde $30.000",
-      "description": "Extensión ligera y flexible, cómoda de llevar.",
-      "image": "/media/servicios/unas/nail-art-5.webp"
-    },
-    {
-      "name": "Soft Gel",
-      "price": "Valor a consultar",
+      "name": "Softgel",
+      "price": "Desde $25.000",
       "description": "Uñas de gel suave, ligeras y de aspecto natural.",
       "image": "/media/servicios/unas/softgel.webp",
       "gallery": [
@@ -55,18 +30,9 @@
     },
     {
       "name": "Press On",
-      "price": "Valor a consultar",
+      "price": "Desde $10.000",
       "description": "Uñas postizas a presión, removibles y reutilizables.",
       "image": "/media/servicios/unas/press-on.webp"
-    },
-    {
-      "name": "Nail Art / Diseño",
-      "price": "Desde $6.000",
-      "description": "Detalles y diseños personalizados por uña.",
-      "image": "/media/servicios/unas/nail-art.webp",
-      "gallery": [
-        "/media/servicios/unas/nail-art-2.webp"
-      ]
     }
   ]
 }
