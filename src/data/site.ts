@@ -198,8 +198,8 @@ export const site = {
   reservations: {
     note: "Cupos limitados por semana para garantizar tiempos de trabajo reales.",
     methods: [
-      { label: "WhatsApp", value: "+56 9 5493 4250" },
-      { label: "Instagram", value: "@hikelly.cl" },
+      { label: "WhatsApp", value: "+56 9 5493 4250", href: "https://wa.me/56954934250" },
+      { label: "Instagram", value: "@hikelly.cl", href: "https://www.instagram.com/hikelly.cl/" },
     ],
   },
   footer: {
