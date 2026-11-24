@@ -11,16 +11,16 @@ export const site = {
     locale: "es_CL",
   },
   contact: {
-    whatsapp: "+56 9 2638 6555",
-    whatsappUrl: "https://wa.me/56926386555",
+    whatsapp: "+56 9 5493 4250",
+    whatsappUrl: "https://wa.me/56954934250",
     instagram: "https://www.instagram.com/hikelly.cl/",
-    tiktok: "https://www.tiktok.com/@hikelly.cll",
+    tiktok: "https://www.tiktok.com/@hikelly.cl",
     email: "hola@hikellybeauty.cl",
     address: "Metro San Alberto Hurtado, Estación Central",
     hours: "Lunes a sábado, 10:00 a 20:00",
   },
   cta: {
-    primary: { label: "Reservar mi hora", href: "https://wa.me/56926386555" },
+    primary: { label: "Reservar mi hora", href: "https://wa.me/56954934250" },
     secondary: { label: "Ver servicios", href: "#servicios" },
   },
   stops: [
@@ -198,7 +198,7 @@ export const site = {
   reservations: {
     note: "Cupos limitados por semana para garantizar tiempos de trabajo reales.",
     methods: [
-      { label: "WhatsApp", value: "+56 9 2638 6555" },
+      { label: "WhatsApp", value: "+56 9 5493 4250" },
       { label: "Instagram", value: "@hikelly.cl" },
     ],
   },
