@@ -208,7 +208,7 @@ export const site = {
       { label: "Política de privacidad", href: "/privacidad/" },
       { label: "Cambios y devoluciones", href: "/cambios/" },
     ],
-    menuHint: "Proyecto desarrollado por E.H.O",
+    menuHint: "Designed & Developed by EHO",
   },
 };
 
